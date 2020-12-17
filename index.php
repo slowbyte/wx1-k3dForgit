@@ -18,7 +18,7 @@ destroySession();
 <html>
 
 <head>
-    <title>ChairFiller WX1-K-3d</title>
+    <title>ChairFiller WX1-K-3d Branch Master</title>
 
     <script src="signin/jquery.js"></script>
     <script src="globalVaribles/globalVars.js"></script>
