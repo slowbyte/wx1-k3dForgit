@@ -633,8 +633,8 @@ function validateSignIn(retn)
     console.log(JSON.stringify(retn));
     //alert("results = "  + results);
     //===============================================================================================
-     SetLastDBdataArrays(retn);  // these will be the source for filling ProfilePages PP1 PP2 PP3  initially with data returned from signin...
-                                                   // using PP1LastDBdata, PP2LastDBdata, PP3LastDBdata,PP123LastDBdata
+     SetLastDBdataArrays(retn, "all");  // these will be the source for filling ProfilePages PP1 PP2 PP3 PP123  initially with data returned from signin...
+                                          // and fill correctly PP1LastDBdata, PP2LastDBdata, PP3LastDBdata,PP123LastDBdata
      retn = null;
 //============================
      setTimeout(function()  //delay so that we have more reliable data showing w/o garbage first time profile is clked  

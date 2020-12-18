@@ -239,9 +239,12 @@ function chooseWhichPPpage()
   }
 }  
 
-function SetLastDBdataArrays(data)
+function SetLastDBdataArrays(data, dothese)
 {
  //PP1 only below 
+ if(dothese == "all" || dothese == "PP1")
+ {
+   alert("do PP1");
   for(var j = 0; j <= 6;  j++)
      {          
 
@@ -249,8 +252,12 @@ function SetLastDBdataArrays(data)
      }
      PP1LastDBdata[j] = data[12];
      //alert("PP1... [" + PP1LastDBdata + "]");
+ }
 
 //PP2 only below 
+if(dothese == "all" || dothese == "PP2")
+ {
+  alert("do PP2")
   for(var j = 0; j <= 4;  j++)
      {          
            PP2LastDBdata[j] = data[j + 7] ;  //remember we alrdy used up data[0 through 6]  in the PP1 for loop      
@@ -259,35 +266,31 @@ function SetLastDBdataArrays(data)
      //alert(j);
      PP2LastDBdata[j] = data[13];
      //alert("PP2... [" + PP2LastDBdata + "]");
+  }     
 
-     //PP3 only below 
+//PP3 only below 
+if(dothese == "all" || dothese == "PP3")
+ {     
+  alert("do PP3"); 
   for(var j = 0; j <=3;  j++)
     {          
         PP3LastDBdata[j] = data[j + 18 ] ;  //remember we alrdy used up data[0 through 13]  in the PP1 + PP2 for loop      
         //alert("PP3 data: " + (j + 14) + "/" + data[j + 14 ]);  
     }
     //alert("PP3... [" + PP3LastDBdata + "]");
+  }
 
- //PP123 only below
+//PP123 only below
+if(dothese == "all" || dothese == "PP123")
+ {
+ alert("do PP123"); 
  for(var j = 0; j <= 22;  j++)
    {          
         PP123LastDBdata[j] = data[j ] ;  //remember this is all the marbles in one array only...
         //alert(PP2LastDBdata);  
    }
   alert("PP123... [" + PP123LastDBdata + "]");
-
-
-
-
-
-
-
- /* var PP1LastDBdata = [];
-  var PP2LastDBdata = [];
-  var PP3LastDBdata = [];
-  var PP1PriorDBdata = [];
-  var PP2PriorDBdata = [];
-  var PP3PriorDBdata = [];*/
+ }
 }
 
 
