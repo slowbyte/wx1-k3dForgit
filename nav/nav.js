@@ -211,7 +211,7 @@ objnvModal.style.display = "flex";
 function chooseWhichPPpage()
 {
   //alert("chooseWhichPPpage");
-  currentPPpage = 0; // (set to 0 or 1 for PP1  set to 2 for PP2  set to 3 for PP3) to determine which PPx page to open on clicking profile nav choice...
+  currentPPpage = 3; // (set to 0 or 1 for PP1  set to 2 for PP2  set to 3 for PP3) to determine which PPx page to open on clicking profile nav choice...
   lastProfileButtonPushed = "profile";
   if(currentPPpage == 0 || currentPPpage == 1)
   {
@@ -244,7 +244,7 @@ function SetLastDBdataArrays(data, dothese)
  //PP1 only below 
  if(dothese == "all" || dothese == "PP1")
  {
-   alert("do PP1");
+   //alert("do PP1");
   for(var j = 0; j <= 6;  j++)
      {          
 
@@ -257,7 +257,7 @@ function SetLastDBdataArrays(data, dothese)
 //PP2 only below 
 if(dothese == "all" || dothese == "PP2")
  {
-  alert("do PP2")
+  //alert("do PP2")
   for(var j = 0; j <= 4;  j++)
      {          
            PP2LastDBdata[j] = data[j + 7] ;  //remember we alrdy used up data[0 through 6]  in the PP1 for loop      
@@ -271,7 +271,7 @@ if(dothese == "all" || dothese == "PP2")
 //PP3 only below 
 if(dothese == "all" || dothese == "PP3")
  {     
-  alert("do PP3"); 
+  //alert("do PP3"); 
   for(var j = 0; j <=3;  j++)
     {          
         PP3LastDBdata[j] = data[j + 18 ] ;  //remember we alrdy used up data[0 through 13]  in the PP1 + PP2 for loop      
@@ -283,13 +283,13 @@ if(dothese == "all" || dothese == "PP3")
 //PP123 only below
 if(dothese == "all" || dothese == "PP123")
  {
- alert("do PP123"); 
+ //alert("do PP123"); 
  for(var j = 0; j <= 22;  j++)
    {          
         PP123LastDBdata[j] = data[j ] ;  //remember this is all the marbles in one array only...
         //alert(PP2LastDBdata);  
    }
-  alert("PP123... [" + PP123LastDBdata + "]");
+  //alert("PP123... [" + PP123LastDBdata + "]");
  }
 }
 

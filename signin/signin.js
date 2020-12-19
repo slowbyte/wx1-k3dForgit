@@ -630,7 +630,7 @@ function validateSignIn(retn)
     //need to create a new function to call the database to do the above new stuff...
     results = signinUPDATEtblprofilepg1(retn);
     //alert("si Validate..." + JSON.stringify(retn));
-    console.log(JSON.stringify(retn));
+    //console.log(JSON.stringify(retn));
     //alert("results = "  + results);
     //===============================================================================================
      SetLastDBdataArrays(retn, "all");  // these will be the source for filling ProfilePages PP1 PP2 PP3 PP123  initially with data returned from signin...
@@ -933,7 +933,7 @@ function Signin4BothTables()
  setTimeout(function()
    {       
      retn2Tbls = Loginajax($dbValues);
-     alert(JSON.stringify(retn2Tbls));
+     //alert(JSON.stringify(retn2Tbls));
      for(var j = 0; j < sizeOfExpectedRetn;  j++)
      {         
            //datax = datax + ", " +pp1rtnSQL[j];      
