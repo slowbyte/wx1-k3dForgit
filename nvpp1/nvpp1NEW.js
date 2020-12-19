@@ -175,15 +175,15 @@ function PP1ZipCodeEntry(zpcd)
 
 function PP1IsEmailEntryAvail() 
 {
-    alert("EmailChk");
+   //alert("EmailChk");
     var dbHost = "localhost";
     //var dbHost = "74.207.235.136";
     var dbUser = "root";
     var dbPwd = "slowbyte1";
     //var loggedUser = username.toLowerCase();  //changed 11/5/2020 morning to new method on next line
-    var loggedUser = PP2LastDBdata[1];  // using Original username column from database
+    var loggedUser = PP123LastDBdata[8];  // using Original username column from database
     //alert(JSON.stringify(PP2LastDBdata));
-    alert(loggedUser);
+    //alert("currently logged in = " + loggedUser);
     var dbName = "cf1";
     var funcName = "pp1EMAILrow";  
     var dBtable = "tblProfilePg1";
@@ -223,7 +223,8 @@ function PP1IsEmailEntryAvail()
             //alert("2nd call has returned here, good");            
             loopRan = false;
             //alert("datax = " + datax);
-            //alert(pp1rtnEmail);
+            alert("pp1rtnEmail = " + pp1rtnEmail);
+             return;//#############################
             if (pp1rtnEmail == "BeingUsed")
             {
               PP1ChkDataChanged("BeingUsed");
@@ -237,13 +238,14 @@ function PP1IsEmailEntryAvail()
              data[3] = "";
              data[4] = "PP1";
              PPxdisplayModal(data);
-            /////// return false;
+            return false;
            }
+           
             else if (pp1rtnEmail == "Not  Used")                 // && lastProfileButtonPushed == "next")  
            {
              //alert("Not  Used from Email Fcn");
              //alert("end of Email Chk is "NotUsed" Calling CHK DATACHANGE");
-             PP1ChkDataChanged("Not  Used");
+            PP1ChkDataChanged("Not  Used");
            }
            else if (pp1rtnEmail == "IOwnEmail" )             // && lastProfileButtonPushed == "profile")  
            {

@@ -68,32 +68,20 @@ class PP1 extends Dbn
       $sql = " select * from $values[6] where email = $thisemail ";
       $stmt = $this->connect($values)->query($sql) ;
       $row = $stmt->fetch();     
-      
-     /*
-     if($row !== null && $values[3] ===  $row[7])
-      {
-           return "true + IOwnEmail";
-      }    
-      else
-      {
-          return "false";
-      }  */
-      
-      
-      //return $row;
+     
             if($row == null) 
             {
                 //return $row[7];  //used for testing
                 return "Not  Used";  
             }                               
-            else if($row != null && $values[3] == $row[7])  
+            else if($row != null && $values[3] == $row[8])  
             {   
-                 //if the logged user is the SAME as the username for this row than return "IOwnEmail"
+                 //if the logged user is the SAME as the usernameorig for this row than return "IOwnEmail"
                 return "IOwnEmail";               
             }
-            else if($row != null && $values[3] != $row[7])  
+            else if($row != null && $values[3] != $row[8])  
             {    
-                 //if the logged user is the DIFFERENT  from owner of the email than return "BeingUsed"
+                 //if the logged user is the DIFFERENT  from the owner of the email than return "BeingUsed"
                 return "BeingUsed";               
             }
             else

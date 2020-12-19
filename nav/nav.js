@@ -211,7 +211,7 @@ objnvModal.style.display = "flex";
 function chooseWhichPPpage()
 {
   //alert("chooseWhichPPpage");
-  currentPPpage = 3; // (set to 0 or 1 for PP1  set to 2 for PP2  set to 3 for PP3) to determine which PPx page to open on clicking profile nav choice...
+  currentPPpage = 0; // (set to 0 or 1 for PP1  set to 2 for PP2  set to 3 for PP3) to determine which PPx page to open on clicking profile nav choice...
   lastProfileButtonPushed = "profile";
   if(currentPPpage == 0 || currentPPpage == 1)
   {
