@@ -28,40 +28,37 @@ var RegInputs = [];
 var RegColumns1 = "( firstname, lastname, usernameorig, password, emailorig, email, username, membersince )"; //MUST ADD TBL2 COLUMNS ALSO
 var RegColumns2 = "( usernamelc, gametype, gamestyle, groupsize, availability)"; 
 
-var Login123LastDBdata = []
-var PP123LastDBdata = [];
-var PP1LastDBdata = [];
-var PP2LastDBdata = [];
-var PP3LastDBdata = [];
+
 
 var PP1PriorDBdata = [];
 var PP2PriorDBdata = [];
 var PP3PriorDBdata = [];
 var PP123PriorDBdata = [];
-
-var PP123LastColumns = [ " userID = ", " firstname = ", " lastname = ", " city = ", " state = ", " zipcode = ", " emailorig = ", " email = ",  
+//===========================================================================
+var Login123LastDBdata = [];
+var PP123LastDBdata = [];
+var PP1LastDBdata = [];
+var PP2LastDBdata = [];
+var PP3LastDBdata = [];
+//=============================================================================
+var PP123UpdateColumns = [ " firstname = ", " lastname = ", " city = ", " state = ", " zipcode = ", " emailorig = ", " email = ",  
+                                                 " password = ",  " phonenumber = ", " dmplayer = ", " birthyear = ",                                            
+                                                 " gametype = ", " gamestyle = ", " groupsize = ", " availability = " ];  
+var PP123LastColumns = [" userID = ", " firstname = ", " lastname = ", " city = ", " state = ", " zipcode = ", " emailorig = ", " email = ",  
                                              " usernameorig = ", " username = ", " password = ",  " phonenumber = ", " dmplayer = ", " birthyear = ",
                                              " lastlogin = ", " logincount = ",  " membersince = ", " usernamelc = ",
-                                             " gametype = ", " gamestyle = ", " groupsize = ", " availability = " , " userIndx = " ];  
+                                             " gametype = ", " gamestyle = ", " groupsize = ", " availability = " , " userIndx = "];                                                   
                                       
-//var PP1LastColumns = ["userID = ",  "firstname = ", "lastname = ", "city = ", "state = ", "zipcode = ", "emailorig = ", "email = "];
-//var PP1LastColumns = ["firstname = ", "lastname = ", "city = ", "state = ", "zipcode = ", "emailorig = ", "email = "];
-//****** PP1LastColumns and the data fields used in PP1LastDBdata
-var PP1LastColumns = ["firstname = ", "lastname = ", "city = ", "state = " , "zipcode = ", "emailorig = " ];
+var PP1UpdateColumns = ["firstname = ", "lastname = ", "city = ", "state = ", "zipcode = ", "emailorig = ", "email = "];
+var PP1LastColumns =      ["firstname = ", "lastname = ", "city = ", "state = " , "zipcode = ", "emailorig = " ];
  //=============================================================================
- 
-//var PP2LastColumns = ["usernameorig = ", "password = ", "phonenumber = ", "dmplayer = ", "birthyear = ", "username = "];
-//var PP2LastColumns = ["password = ", "phonenumber = ", "dmplayer = ", "birthyear = "];
-//****** PP2LastColumns and the data fields used in PP2LastDBdata
-var PP2LastColumns = ["password = ", "phonenumber = ", "dmplayer = ", "birthyear = "];
+var PP2UpdateColumns = ["password = ", "phonenumber = ", "dmplayer = ", "birthyear = "];
+var PP2LastColumns =      ["password = ", "phonenumber = ", "dmplayer = ", "birthyear = "];
 //==============================================================================
 
-//var PP3LastColumns = ["username = ", "gametype = ", "gamestyle = ", "groupsize = ", "availability = ", "lastsignin = ", "signincount = ", "membersince = " ];
-//var PP3LastColumns = ["gametype = ", "gamestyle = ", "groupsize = ", "availability = "];
-//****** PP3LastColumns and the data fields used in PP3LastDBdata
-var PP3LastColumns = ["gametype = ", "gamestyle = ", "groupsize = ", "availability = "]; 
+var PP3UpdateColumns = ["gametype = ", "gamestyle = ", "groupsize = ", "availability = "];
+var PP3LastColumns =      ["gametype = ", "gamestyle = ", "groupsize = ", "availability = "]; 
 //==============================================================================
-
 //*************************** these are never editable by the user/member directly in any PPx...*****************************//
 var PPSpecial = [userID, email, usernameorig, username, lastlogin, logincount, membersince, usernamelc, userIndx];
 //************************************************************************************************************************************//

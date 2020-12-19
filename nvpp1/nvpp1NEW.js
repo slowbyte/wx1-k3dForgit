@@ -309,7 +309,7 @@ function PP1ChkDataChanged(emailChkedStatus)
 
 function PP1Update(entries, emailcurrentstatus)
  {
-  //alert("in the PP1Update func");
+  alert("in the PP1Update func Entries = " + JSON.stringify(entries));
   if(lastProfileButtonPushed != "Next")
   {
     alert("In PP1Update w/o Next clked");
@@ -320,7 +320,8 @@ function PP1Update(entries, emailcurrentstatus)
 
   $dataStr = "";
   $tmpStr = "";
-  for (var j = 1; j < PP1LastColumns.length; j++) {
+  for (var j = 0; j < PP1LastColumns.length; j++)
+ {
     $dataStr = $dataStr + PP1LastColumns[j] + "'" + entries[j] + "'" + ", "; //WORKS OK FINALLY
   }
   var len = $dataStr.length;
@@ -330,15 +331,15 @@ function PP1Update(entries, emailcurrentstatus)
   //var dbHost = "74.207.235.136";
   var dbUser = "root";
   var dbPwd = "slowbyte1";
-  var loggedUser = PP2LastDBdata[0];
+  var loggedUser = PP123LastDBdata[8];  
   var dbName = "cf1";
   var funcName = "pp1UPDATEwrite";
   var dBtable = "tblProfilePg1";
   var dbValuesToInsert = $dataStr; 
-  //alert(dbValuesToInsert);
+  alert("$dataStr = " + $dataStr);
 
   $dbValues = [dbHost, dbUser, dbPwd, loggedUser, dbName, funcName, PP2LastDBdata[5], dbValuesToInsert, dbValuesToInsert, dBtable];
-  ////alert("Update dbValues = " + $dbValues);
+  alert("Update dbValues = " + $dbValues);
 
   setTimeout(function () 
   {
