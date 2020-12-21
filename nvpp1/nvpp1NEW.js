@@ -55,12 +55,12 @@ function PP1Run()
     setTimeout(function ()
      {
       //new on 11/4/2020 way of doing it
-      line1.value = PP1LastDBdata[1].trim();
-      line2.value = PP1LastDBdata[2].trim();
-      line3.value = PP1LastDBdata[3].trim();
-      line4.value = PP1LastDBdata[4].trim();
-      line5.value = PP1LastDBdata[5].trim();
-      line6.value = PP1LastDBdata[6].trim();// changed 9/4/20 to show dB coln emailorig instead of coln email
+      line1.value = PP1LastDBdata[0].trim();
+      line2.value = PP1LastDBdata[1].trim();
+      line3.value = PP1LastDBdata[2].trim();
+      line4.value = PP1LastDBdata[3].trim();
+      line5.value = PP1LastDBdata[4].trim();
+      line6.value = PP1LastDBdata[5].trim();// changed 9/4/20 to show dB coln emailorig instead of coln email
     }, 10);
   }
 // END PRIMARY FUNCTIONS FOR LOADING PAGE PP1=====================================
@@ -181,7 +181,7 @@ function PP1IsEmailEntryAvail()
     var dbUser = "root";
     var dbPwd = "slowbyte1";
     //var loggedUser = username.toLowerCase();  //changed 11/5/2020 morning to new method on next line
-    var loggedUser = PP123LastDBdata[8];  // using Original username column from database
+    var loggedUser = PP123LastDBdata[9];  // using Original username column from database
     //alert(JSON.stringify(PP2LastDBdata));
     //alert("currently logged in = " + loggedUser);
     var dbName = "cf1";
@@ -206,10 +206,11 @@ function PP1IsEmailEntryAvail()
       {       
         //pp1rtnSQL = PP1ajax($dbValues);
         //alert("setTOut = ");
-        for(var j = 0; j < sizeOfExpectedRetn;  j++)
+        /*for(var j = 0; j < sizeOfExpectedRetn;  j++)
         {         
               datax = datax + "\r\n " + pp1rtnEmail[j];    
         }
+        */
   
         if(loopRan == false)   
         {            
@@ -224,12 +225,11 @@ function PP1IsEmailEntryAvail()
             loopRan = false;
             //alert("datax = " + datax);
             alert("pp1rtnEmail = " + pp1rtnEmail);
-             return;//#############################
             if (pp1rtnEmail == "BeingUsed")
             {
-              PP1ChkDataChanged("BeingUsed");
+              //PP1ChkDataChanged("BeingUsed");
              //Display Error that email is not available...
-             PP1ChkDataChanged = "BeingUsed";
+            // PP1ChkDataChanged = "BeingUsed";
             document.getElementById('PP1ErrorBox').style.border = "4px solid red";
              var data = [];
              data[0] = "ERROR: Chosen Email Is NOT Available!";
@@ -243,14 +243,14 @@ function PP1IsEmailEntryAvail()
            
             else if (pp1rtnEmail == "Not  Used")                 // && lastProfileButtonPushed == "next")  
            {
-             //alert("Not  Used from Email Fcn");
-             //alert("end of Email Chk is "NotUsed" Calling CHK DATACHANGE");
+             alert("Not  Used from Email Fcn");
+             //alert("end of Email Chk is "NotUsed" Calling CHK DATACHANGED");
             PP1ChkDataChanged("Not  Used");
            }
            else if (pp1rtnEmail == "IOwnEmail" )             // && lastProfileButtonPushed == "profile")  
            {
-            //alert("IOwnEmail from Email Fcn");
-            // alert("end of Email Chk @ IOE Calling CHK DATACHANGE fcn");
+            alert("IOwnEmail from Email Fcn");
+            // alert("end of Email Chk @ IOE Calling CHK DATACHANGED fcn");
             PP1ChkDataChanged("IOwnEmail");        
            }
            else
@@ -265,9 +265,12 @@ function PP1IsEmailEntryAvail()
       pp1rtnEmail = PP1ajax($dbValues);  
 }
 
+
+
+/*
 function PP1ChkDataChanged(emailChkedStatus)
  {
-  //alert("In PP1ChkDataChanged() = " + emailChkedStatus);
+  alert("In PP1ChkDataChanged() = " + emailChkedStatus);
   line[0] = "no entry";
   line[1] = document.getElementById('fn').value.trim();
   line[2] = document.getElementById('ln').value.trim();
@@ -276,7 +279,7 @@ function PP1ChkDataChanged(emailChkedStatus)
   line[5] = document.getElementById('zc').value.trim();
   line[6] = document.getElementById('em').value.trim();
   line[7] = line[6].toLowerCase();
-
+ 
   entryChanged = false;
 
   for (var i = 1; i < (line.length -1); i++)
@@ -308,10 +311,67 @@ function PP1ChkDataChanged(emailChkedStatus)
     PP1Update(line, emailChkedStatus);  // have to update to database PP1 entries because 1 or more have been modified by user
   }
 }
+*/
 
-function PP1Update(entries, emailcurrentstatus)
+
+function PP1ChkDataChanged()
+{  //working OK 12/20/2020 @ 7:10pm
+   alert("chking PP1ChkDataChanged() ");
+    var keys = [];
+    var newData = [];
+    var line = [];
+
+    line[0] = document.getElementById('fn').value.trim();
+    line[1] = document.getElementById('ln').value.trim();
+    line[2] = document.getElementById('ci').value.trim();
+    line[3] = document.getElementById('st').value.trim();
+    line[4] = document.getElementById('zc').value.trim();
+    line[5] = document.getElementById('em').value.trim();
+    line[6] = line[5].toLowerCase();
+  
+     entryChanged = false;
+     $dataTmp = "";
+     var index = 0;
+     alert("PP1LastDBdata = " + JSON.stringify(PP1LastDBdata));
+     for(var i = 0; i < line.length; i++)  
+     {      
+       if(line[i] != PP1LastDBdata[i].trim())
+       {              
+         $dataTmp = $dataTmp + PP1UpdateColumns[i]   + "'" + line[i] + "'" + ", ";
+         keys[index] = i;
+         newData[index] = line[i];
+         index++;
+         entryChanged = true; 
+         alert("here1 = " + PP1LastDBdata[i]);        
+       }
+     }
+      var len = $dataTmp.length;
+      $dataTmp = $dataTmp.slice(0, len -2);
+      alert("$dataTmp Final = " + $dataTmp); 
+     
+     if(entryChanged == false)  
+     {  //No changes so no update needed!
+        alert("Changed = false; lPBPushed = " + lastProfileButtonPushed);
+        objNAVnvpp1form.style.display = "none";
+        document.getElementById('PP1ErrorBox').style.display = "none";
+       if( lastProfileButtonPushed == "Next")
+       {
+          alert("finished with last profile page PP1 onward to PP2");
+          PP2Run();
+       }        
+    }
+   else if(entryChanged == true)
+   {      
+     alert("entry change is true... goto Update fcn");
+      PP1Update($dataTmp, keys, newData);
+   }
+}
+
+function PP1Update($dataStr, keys, newData)
  {
-  alert("in the PP1Update func Entries = " + JSON.stringify(entries));
+  alert("in the PP1Update func \n\r" + $dataStr + "\n\r" + keys + "\n\r" + newData);
+  return;
+
   if(lastProfileButtonPushed != "Next")
   {
     alert("In PP1Update w/o Next clked");

@@ -245,39 +245,39 @@ function SetLastDBdataArrays(data, dothese)
  if(dothese == "all" || dothese == "PP1")
  {
    //alert("do PP1");
-  for(var j = 0; j <= 6;  j++)
+  for(var j = 0; j < 7;  j++) //new 12/20/2020  don't start at 0 which is userID col. start @ 1 which is firstname col
      {          
 
-           PP1LastDBdata[j] = data[j]              
+           PP1LastDBdata[j] = data[j + 1]              
      }
-     PP1LastDBdata[j] = data[12];
-     //alert("PP1... [" + PP1LastDBdata + "]");
+    // PP1LastDBdata[j] = data[7];
+     alert("PP1... [" + PP1LastDBdata + "]");
  }
 
 //PP2 only below 
 if(dothese == "all" || dothese == "PP2")
  {
   //alert("do PP2")
-  for(var j = 0; j <= 4;  j++)
+  for(var j = 0; j < 5;  j++)
      {          
-           PP2LastDBdata[j] = data[j + 7] ;  //remember we alrdy used up data[0 through 6]  in the PP1 for loop      
+           PP2LastDBdata[j] = data[j + 9] ;  //remember we alrdy used up data[0 through 6]  in the PP1 for loop      
            //alert(PP2LastDBdata);  
      }
      //alert(j);
-     PP2LastDBdata[j] = data[13];
-     //alert("PP2... [" + PP2LastDBdata + "]");
+     //PP2LastDBdata[j] = data[13];
+     alert("PP2... [" + PP2LastDBdata + "]");
   }     
 
 //PP3 only below 
 if(dothese == "all" || dothese == "PP3")
  {     
   //alert("do PP3"); 
-  for(var j = 0; j <=3;  j++)
+  for(var j = 0; j < 4;  j++)
     {          
         PP3LastDBdata[j] = data[j + 18 ] ;  //remember we alrdy used up data[0 through 13]  in the PP1 + PP2 for loop      
         //alert("PP3 data: " + (j + 14) + "/" + data[j + 14 ]);  
     }
-    //alert("PP3... [" + PP3LastDBdata + "]");
+    alert("PP3... [" + PP3LastDBdata + "]");
   }
 
 //PP123 only below
@@ -289,7 +289,7 @@ if(dothese == "all" || dothese == "PP123")
         PP123LastDBdata[j] = data[j ] ;  //remember this is all the marbles in one array only...
         //alert(PP2LastDBdata);  
    }
-  //alert("PP123... [" + PP123LastDBdata + "]");
+  alert("PP123... [" + PP123LastDBdata + "]");
  }
 }
 
