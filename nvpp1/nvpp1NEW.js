@@ -367,6 +367,8 @@ function PP1ChkDataChanged()
    }
 }
 
+
+/*
 function PP1Update($dataStr, keys, newData)
  {
   alert("in the PP1Update func \n\r" + $dataStr + "\n\r" + keys + "\n\r" + newData);
@@ -453,7 +455,88 @@ function PP1Update($dataStr, keys, newData)
     //alert(pp1rtnUpdate[1]);nvLoadPP2();
   }, 2500);
    pp1rtnUpdate = PP1ajax($dbValues);
-   }
+   } */
+
+
+
+   function PP1Update($dataStr, keys, newData)
+{
+  alert("in the PP1Update func \n\r" + $dataStr + "\n\r" + keys + "\n\r" + newData);
+  if( !(lastProfileButtonPushed == "Next" ))
+  {
+    //alert("In PP1Update w/o Next clked");
+    //return; //we are only allowed to update the dB if "Next" button clicked got us here.!!!
+  } 
+     currentPPpage == 1
+     
+      var dbHost = "localhost";
+      //var dbHost = "74.207.235.136";
+      var dbUser = "root";
+      var dbPwd = "slowbyte1";
+      var loggedUser =  PP123LastDBdata[9];  ///////////////////////username;
+      var dbName = "cf1";
+      var funcName =  "pp1UPDATEwrite"; 
+      var dBtable = "tblProfilePg1"; 
+      var dbValuesToInsert  =  $dataStr;           
+      alert("dbValuesToInsert:   "  + dbValuesToInsert);
+     
+     $dbValues = [dbHost, dbUser, dbPwd, loggedUser, dbName, funcName, username.toLowerCase(), dbValuesToInsert , dbValuesToInsert, dBtable]; 
+     //alert("dbValues = " + $dbValues);
+
+     setTimeout(function()
+    {     
+       pp1rtnUpdate = PP1ajax($dbValues);
+      // alert(pp1rtnUpdate)
+
+      // ( if ) SUCCESS CODE BEGINS ========================================================================
+       //need some kind of chk for success!
+   if(pp1rtnUpdate == "success")
+   {    
+        alert("Success & LBtn Pushed = " + lastProfileButtonPushed );
+     
+       //Update PP3LastDBdata with just the changes made to the database...
+       alert("==== " + PP1LastDBdata);
+      // for(i = 1; i < keys.length; i++)
+       for(i = 0; i < keys.length; i++)
+       {
+         PP1LastDBdata[keys[i]]  = newData[i];
+         alert("key column name = " + PP1UpdateColumns[keys[i] ]);
+       }
+       alert("+++ " + PP1LastDBdata);
+  
+ 
+         document.getElementById('PP1ErrorBox').style.display = "none";
+         document.getElementById('PP2ErrorBox').style.display = "none";
+         document.getElementById('PP3ErrorBox').style.display = "none";
+         objNAVnvpp2form.style.display = "none";
+
+        if( lastProfileButtonPushed == "Next")
+        {
+             lastProfileButtonPushed = "NONE"
+             PP2Run();             
+        }       
+   
+    } 
+     // ( if ) SUCCESS CODE ENDS ========================================================================    
+
+       else // UPDATE FAILED...
+       {  
+        //alert(pp1rtnUpdate);
+        //Display Error that email is not available...
+        document.getElementById('PP2ErrorBox').style.display = "none";
+        //document.getElementById('PP2ErrorBox').style.border = "4px solid red";  
+
+        data[0] = "ERROR: Update Problem; please correct...";
+        data[1] =  pp1rtnUpdate ;
+        data[2] =  "";
+        data[3] =   ""; 
+        data[4] = "PP1";
+        PPxdisplayModal(data); 
+        return false;                               
+       }
+    }, 2500);
+    pp1rtnUpdate = PP1ajax($dbValues);
+}
 // END PRIMARY FUNCTIONS FOR PP1 NEXT BUTTON CLICKED =============
 
 // BEGIN PP1 HELPER FUNCTIONS =====================================

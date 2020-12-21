@@ -420,7 +420,7 @@ function PP3Update($dataStr, keys, newData)
     }, 2500);
     pp3rtnUpdate = PP3ajax($dbValues);
 }
-// END  PP2Update =================================================================
+// END  PP3Update =================================================================
 // END PRIMARY FUNCTIONS FOR PP3  PREVIOUS OR UPDATE BUTTON CLICKED =============
 
 
