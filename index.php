@@ -18,7 +18,7 @@ destroySession();
 <html>
 
 <head>
-    <title>ChairFiller WX1-K-3d Branch PP1Fixing</title>
+    <title>ChairFiller WX1-K-3d Branch PP2Fixing</title>
 
     <script src="signin/jquery.js"></script>
     <script src="globalVaribles/globalVars.js"></script>
@@ -53,7 +53,7 @@ destroySession();
 <section id="grid">
          <div  id="logos" onclick="login();" href="javascript:void(0);" >
             <img  id="img1" src="logos/logo3simple.png" alt="icon80" width="60" height="76">
-            <span  id="divmid"><img  id="img1" src="logos/CFtext.png" alt="icon80" width="225" height="300"></span><span id="ver">wx1-k-3d<br>PP1Fix</span>
+            <span  id="divmid"><img  id="img1" src="logos/CFtext.png" alt="icon80" width="225" height="300"></span><span id="ver">wx1-k-3d<br>PP2Fix</span>
          </div>  <!-- end first 3 rows | end id logos -->
 
             <div class="gridareas"  id="s11"><a id="a11" onclick="DBCall();" href="javascript:void(0);" >Find a Table</a></div>
