@@ -211,7 +211,7 @@ objnvModal.style.display = "flex";
 function chooseWhichPPpage()
 {
   //alert("chooseWhichPPpage");
-  currentPPpage = 0; // (set to 0 or 1 for PP1  set to 2 for PP2  set to 3 for PP3) to determine which PPx page to open on clicking profile nav choice...
+  currentPPpage = 2; // (set to 0 or 1 for PP1  set to 2 for PP2  set to 3 for PP3) to determine which PPx page to open on clicking profile nav choice...
   lastProfileButtonPushed = "profile";
   if(currentPPpage == 0 || currentPPpage == 1)
   {
@@ -251,7 +251,7 @@ function SetLastDBdataArrays(data, dothese)
            PP1LastDBdata[j] = data[j + 1]              
      }
     // PP1LastDBdata[j] = data[7];
-     alert("PP1... [" + PP1LastDBdata + "]");
+     //alert("PP1... [" + PP1LastDBdata + "]");
  }
 
 //PP2 only below 
@@ -265,7 +265,7 @@ if(dothese == "all" || dothese == "PP2")
      }
      //alert(j);
      //PP2LastDBdata[j] = data[13];
-     alert("PP2... [" + PP2LastDBdata + "]");
+     //alert("PP2... [" + PP2LastDBdata + "]");
   }     
 
 //PP3 only below 
@@ -277,7 +277,7 @@ if(dothese == "all" || dothese == "PP3")
         PP3LastDBdata[j] = data[j + 18 ] ;  //remember we alrdy used up data[0 through 13]  in the PP1 + PP2 for loop      
         //alert("PP3 data: " + (j + 14) + "/" + data[j + 14 ]);  
     }
-    alert("PP3... [" + PP3LastDBdata + "]");
+    //alert("PP3... [" + PP3LastDBdata + "]");
   }
 
 //PP123 only below
@@ -289,7 +289,7 @@ if(dothese == "all" || dothese == "PP123")
         PP123LastDBdata[j] = data[j ] ;  //remember this is all the marbles in one array only...
         //alert(PP2LastDBdata);  
    }
-  alert("PP123... [" + PP123LastDBdata + "]");
+  //alert("PP123... [" + PP123LastDBdata + "]");
  }
 }
 

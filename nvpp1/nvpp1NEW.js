@@ -82,7 +82,7 @@ function PP1BtnNxtClked()
  function PP1EntriesPresent()
  {
  // alert("In  PP1EntriesPresent()");
-  var columns = ['userID', 'firstname', 'lastname', 'city', 'state', 'zipcode', 'email'];
+ ///////////////////////////////////// var columns = ['userID', 'firstname', 'lastname', 'city', 'state', 'zipcode', 'email'];
   var line = [];
   line[0] = document.getElementById('fn').value;
   line[1] = document.getElementById('ln').value;
@@ -384,7 +384,7 @@ function PP1ChkDataChanged()
         //Display Error that email is not available...
         document.getElementById('PP2ErrorBox').style.display = "none";
         //document.getElementById('PP2ErrorBox').style.border = "4px solid red";  
-
+        var data = [];
         data[0] = "ERROR: Update Problem; please correct...";
         data[1] =  pp1rtnUpdate ;
         data[2] =  "";
