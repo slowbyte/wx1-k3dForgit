@@ -331,59 +331,17 @@ function PP3Update($dataStr, keys, newData)
    if(pp3rtnUpdate == "success")
    {    
         alert("Success & LBtn Pushed = " + lastProfileButtonPushed );
-       //Save present PP2LastDBdata b4 updating to PP2PriorDBdata for "JUST IN CASE"
     
-      /* var $PP2PriorOrig = "";
-       for(j = 0; j < PP2LastDBdata.length; j++)
-       {
-        $PP2PriorOrig =  $PP2PriorOrig + PP2PriorDBdata[j] + " ... ";
-       }
-       alert("PriorOrig: " + $PP2PriorOrig);
-
-       var $PP2Lastx = "";
-       for(j = 0; j < PP2LastDBdata.length; j++)
-       {
-        //$PP2Prior =  $PP2Prior + PP2PriorDBdata[j] + " ... ";
-        $PP2Lastx =  $PP2Lastx + PP2LastDBdata[j] + " ... ";
-       }
-       alert("Lastx: " + $PP2Lastx)
-      
-
-       PP2PriorDBdata = PP2LastDBdata;
-       var $PP2Priorx = "";
-       for(j = 0; j < PP2LastDBdata.length; j++)
-       {
-        //$PP2Prior =  $PP2Prior + PP2PriorDBdata[j] + " ... ";
-        $PP2Priorx =  $PP2Priorx + PP2PriorDBdata[j] + " ... ";
-        
-       }
-       alert("Priorx: " + $PP2Priorx)
-       */
        //Update PP3LastDBdata with just the changes made to the database...
        alert("==== " + PP3LastDBdata);
       // for(i = 1; i < keys.length; i++)
        for(i = 0; i < keys.length; i++)
        {
          PP3LastDBdata[keys[i]]  = newData[i];
-         alert("key column name = " + PP3LastColumns[keys[i] ]);
+         alert("key column name = " + PP3UpdateColumns[keys[i] ]);
        }
        alert("+++ " + PP3LastDBdata);
-        
-      /* var $PP2Prior = "";
-       var $PP2Last = "";
-       for(j = 0; j < PP2LastDBdata.length; j++)
-       {
-        $PP2Prior =  $PP2Prior + PP2PriorDBdata[j] + " ... ";
-        //$PP2Last =  $PP2Last + PP2LastDBdata[j] + " ... ";
-       }
-       for(j = 0; j < PP2LastDBdata.length; j++)
-       {
-        //$PP2Prior =  $PP2Prior + PP2PriorDBdata[j] + " ... ";
-          $PP2Last =  $PP2Last + PP2LastDBdata[j] + " ... ";
-       }
-       alert($PP2Prior + "\r\n" + $PP2Last + "\r\n" + $PP2Lastx + "\r\n" + $PP2Priorx + "\r\n" + $PP2PriorOrig);
-       */
- 
+         
          document.getElementById('PP1ErrorBox').style.display = "none";
          document.getElementById('PP2ErrorBox').style.display = "none";
          document.getElementById('PP3ErrorBox').style.display = "none";
