@@ -668,7 +668,7 @@ function signinUPDATEtblprofilepg1(row)  // this function is to update the last 
     //var dbHost = "74.207.235.136";
     var dbUser = "root";
     var dbPwd = "slowbyte1";
-    var loggedUser = row[8];
+    var loggedUser = row[9];
     var dbName = "cf1";
     var funcName = "signinUPDATEwrite";
     var dBtable = "tblProfilePg1";
@@ -736,7 +736,7 @@ function getSESSIONcookie(loggedInUser, secondParam)
 /////////////// BEGIN FUNCTION WriteLastSignInInfo() //////////////////////////////////////////////////
 function WriteLastSignInInfo()
 {
-  //alert("wlsiinfo");
+  alert("wlsiinfo");
   funcName = "setlastsignin";
   $dbValues = [dbAddress, dbUser, dbPwd, loggedUser, dbName, funcName] ;
   //alert("timedout");
