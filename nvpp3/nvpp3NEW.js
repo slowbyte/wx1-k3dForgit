@@ -311,7 +311,7 @@ function PP3Update($dataStr, keys, newData)
       //var dbHost = "74.207.235.136";
       var dbUser = "root";
       var dbPwd = "slowbyte1";
-      var loggedUser = username;
+      var loggedUser =  PP123LastDBdata[9];  ///////////////////////username;
       var dbName = "cf1";
       var funcName =  "pp3UPDATEwrite";   
       var dBtable = "tblProfilePg2"; 
