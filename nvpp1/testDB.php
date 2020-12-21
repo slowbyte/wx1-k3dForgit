@@ -74,12 +74,12 @@ class PP1 extends Dbn
                 //return $row[7];  //used for testing
                 return "Not  Used";  
             }                               
-            else if($row != null && $values[3] == $row[8])  
+            else if($row != null && $values[3] == $row[9])  
             {   
                  //if the logged user is the SAME as the usernameorig for this row than return "IOwnEmail"
                 return "IOwnEmail";               
             }
-            else if($row != null && $values[3] != $row[8])  
+            else if($row != null && $values[3] != $row[9])  
             {    
                  //if the logged user is the DIFFERENT  from the owner of the email than return "BeingUsed"
                 return "BeingUsed";               

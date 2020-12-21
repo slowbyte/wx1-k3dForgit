@@ -370,7 +370,6 @@ function PP1ChkDataChanged()
 function PP1Update($dataStr, keys, newData)
  {
   alert("in the PP1Update func \n\r" + $dataStr + "\n\r" + keys + "\n\r" + newData);
-  return;
 
   if(lastProfileButtonPushed != "Next")
   {
@@ -393,7 +392,7 @@ function PP1Update($dataStr, keys, newData)
   //var dbHost = "74.207.235.136";
   var dbUser = "root";
   var dbPwd = "slowbyte1";
-  var loggedUser = PP123LastDBdata[8];  
+  var loggedUser = PP123LastDBdata[9];  
   var dbName = "cf1";
   var funcName = "pp1UPDATEwrite";
   var dBtable = "tblProfilePg1";
