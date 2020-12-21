@@ -265,55 +265,6 @@ function PP1IsEmailEntryAvail()
       pp1rtnEmail = PP1ajax($dbValues);  
 }
 
-
-
-/*
-function PP1ChkDataChanged(emailChkedStatus)
- {
-  alert("In PP1ChkDataChanged() = " + emailChkedStatus);
-  line[0] = "no entry";
-  line[1] = document.getElementById('fn').value.trim();
-  line[2] = document.getElementById('ln').value.trim();
-  line[3] = document.getElementById('ci').value.trim();
-  line[4] = document.getElementById('st').value.trim();
-  line[5] = document.getElementById('zc').value.trim();
-  line[6] = document.getElementById('em').value.trim();
-  line[7] = line[6].toLowerCase();
- 
-  entryChanged = false;
-
-  for (var i = 1; i < (line.length -1); i++)
-  {
-    if(line[i] !== PP1LastDBdata[i]);
-     {
-      entryChanged = true;   
-    }
-  }
-  //alert("chk for changed = " + entryChanged);
-  if(entryChanged == false && emailChkedStatus == "IOwnEmail" )
-  {
-    //alert("FALSE but have to save changes to dB; IOwnEmail ");
-    //alert("end Chk Datachange? @ false & IOE");
-    //PP1Update(line, emailChkedStatus); //noting has changed in PP1 entries no need to Update page PP1 entries go to PP2 page entries
-    //NO NEED TO UPDATE JUST GO TO NEXT PP2 page
-    PP2Run();  //onwards to PP2 page 2 entries
-  }
-
-  else if (entryChanged == false)
-   {
-    //alert("real entry changed == false");
-    objNAVnvpp1form.style.display = "none";   // just added 9/30/2020
-    PP2Run();  //onwards to PP2 page 2 entries
-  }
-   else if (entryChanged == true) {
-   // alert("TRUE & have to save changes to dB");
-    //alert("end Chk Datachange? @ true");
-    PP1Update(line, emailChkedStatus);  // have to update to database PP1 entries because 1 or more have been modified by user
-  }
-}
-*/
-
-
 function PP1ChkDataChanged()
 {  //working OK 12/20/2020 @ 7:10pm
    alert("chking PP1ChkDataChanged() ");
@@ -367,98 +318,6 @@ function PP1ChkDataChanged()
    }
 }
 
-
-/*
-function PP1Update($dataStr, keys, newData)
- {
-  alert("in the PP1Update func \n\r" + $dataStr + "\n\r" + keys + "\n\r" + newData);
-
-  if(lastProfileButtonPushed != "Next")
-  {
-    alert("In PP1Update w/o Next clked");
-    // return //we are only allowed to update the dB if "next" button pushed got us here.!!!
-    PP2Run();  //onwards to PP2 page 2 entries
-  }
-   
-
-  $dataStr = "";
-  $tmpStr = "";
-  for (var j = 0; j < PP1LastColumns.length; j++)
- {
-    $dataStr = $dataStr + PP1LastColumns[j] + "'" + entries[j] + "'" + ", "; //WORKS OK FINALLY
-  }
-  var len = $dataStr.length;
-  $dataStr = $dataStr.slice(0, len - 2); //remove last "," in $dataStr array" because it is not needed and cud case problem in the database...
-  //alert($dataStr);
-  var dbHost = "localhost";
-  //var dbHost = "74.207.235.136";
-  var dbUser = "root";
-  var dbPwd = "slowbyte1";
-  var loggedUser = PP123LastDBdata[9];  
-  var dbName = "cf1";
-  var funcName = "pp1UPDATEwrite";
-  var dBtable = "tblProfilePg1";
-  var dbValuesToInsert = $dataStr; 
-  alert("$dataStr = " + $dataStr);
-
-  $dbValues = [dbHost, dbUser, dbPwd, loggedUser, dbName, funcName, PP2LastDBdata[5], dbValuesToInsert, dbValuesToInsert, dBtable];
-  alert("Update dbValues = " + $dbValues);
-
-  setTimeout(function () 
-  {
-    pp1rtnUpdate = PP1ajax($dbValues);
-    //alert("retn = " + pp1rtnUpdate);
-    //need some kind of chk for success!
-    if (pp1rtnUpdate === "success")
-     {
-      ////alert("update was successful");
-      dataBaseUpdated = true;
-      // 1- Save present PP1LastDBdata to PP1PriorDBdata = [];
-      // 2 - now change   PP1LastDBdata[] to updated row data 
-      
-     //// alert("0- pp1Prior = " + PP1PriorDBdata);
-     ////alert("0a- pp1Prior = " + PP123PriorDBdata);
-      PP1PriorDBdata = PP1LastDBdata;
-      ////alert("1- pp1Prior = " + PP1PriorDBdata);
-      
-          for (var i = 1; i < PP1LastColumns.length; i++) 
-          {                     
-               PP1LastDBdata[i] = entries[i];
-               //PP123LastDBdata[i] = entries[i];
-          }
-          ////alert("2- PP1LastDBdata = " + PP1LastDBdata)
-          ////alert("3- PP123LastDBdata = " + PP123LastDBdata)
-      document.getElementById('PP1ErrorBox').style.display = "none";
-      document.getElementById('PP2ErrorBox').style.display = "none";
-      document.getElementById('PP3ErrorBox').style.display = "none";
-      objNAVnvpp1form.style.display = "none";
-      PP2Run();  //on to PP2 page Entries
-    } 
-    else
-     {
-      //alert("else");   // alert("emailcurrentstatus");
-       if(emailcurrentstatus != "IOwnEmail  from Update Fcn");
-       {
-      // alert(pp1rtnUpdate);
-     document.getElementById('PP1ErrorBox').style.border = "4px solid red";
-      var data = [];
-      data[0] = "ERROR: Update Problem; please correct...";
-      data[1] = pp1rtnUpdate;
-      data[2] = "";
-      data[3] = "";
-      data[4] = "PP1";
-      PPxdisplayModal(data);
-      return false;
-     }
-    }
-    // nvLoadPP2();
-    //alert(pp1rtnUpdate[1]);nvLoadPP2();
-  }, 2500);
-   pp1rtnUpdate = PP1ajax($dbValues);
-   } */
-
-
-
    function PP1Update($dataStr, keys, newData)
 {
   alert("in the PP1Update func \n\r" + $dataStr + "\n\r" + keys + "\n\r" + newData);
@@ -494,15 +353,15 @@ function PP1Update($dataStr, keys, newData)
    {    
         alert("Success & LBtn Pushed = " + lastProfileButtonPushed );
      
-       //Update PP3LastDBdata with just the changes made to the database...
-       alert("==== " + PP1LastDBdata);
+       //Update PP1LastDBdata with ONLY the changes just made to the database...
+       alert("==== " + PP1LastDBdata);  //original data b4 the Update
       // for(i = 1; i < keys.length; i++)
        for(i = 0; i < keys.length; i++)
        {
          PP1LastDBdata[keys[i]]  = newData[i];
          alert("key column name = " + PP1UpdateColumns[keys[i] ]);
        }
-       alert("+++ " + PP1LastDBdata);
+       alert("+++ " + PP1LastDBdata); //new data after the Update
   
  
          document.getElementById('PP1ErrorBox').style.display = "none";
