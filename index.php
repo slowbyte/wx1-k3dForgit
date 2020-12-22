@@ -29,7 +29,7 @@ destroySession();
     <script src="admin/adminonly.js"></script>
     <script src="nav/nav.js"></script>
     <script src="nvpp1/nvpp1NEW.js"></script>
-    <script src="nvpp2/nvpp2.js"></script>
+    <script src="nvpp2/nvpp2NEW.js"></script>
     <script src="nvpp3/nvpp3NEW.js"></script>    
     <script src="modalbox/modal.js"></script>
 
