@@ -95,7 +95,7 @@ function PP2Fill()
 // BEGIN PRIMARY FUNCTIONS FOR PP2 PREVIOUS/NEXT BUTTON CLICKED ============================
 function PP2BtnPreNxtClked() //NEXT or PREVIOUS CLICKED @ PP2 page
 {
-   //alert("PP2 Nxt Clked() "); 
+   //alert("PP2 BtnPreNxtClked() "); 
    //Prev or Nxt Clicked???
    if(this.id == "nvpp2btnnxt")
    {
@@ -117,52 +117,46 @@ function PP2BtnPreNxtClked() //NEXT or PREVIOUS CLICKED @ PP2 page
 function PP2EntriesPresent()
 {
   alert("in  PP2EntriesPresent()");  
-  /////////////////////////////////var columns = [ 'ignore', 'username', 'password', 'phonenumber', 'dm &/or player', 'birthyear' ];
-  //alert((document.getElementById('pp2chk1').checked == false && document.getElementById('pp2chk2').checked == false));
-  //get value for checkboxes at dm/player first...
-  dmplyr = "entry present";
-  if((document.getElementById('pp2chk1').checked == false && document.getElementById('pp2chk2').checked == false))
+ 
+  //determine if @ least1 chkbox of either DM or Plyr is checked...
+  dmplyr = "entry present"; //assume initially 1 or more is chked
+if((document.getElementById('pp2chk1').checked == false && document.getElementById('pp2chk2').checked == false))
  {
-   dmplyr = "";
+   dmplyr = "";  //no DM or Plyr checkbox is checked... so will error out this PP2EntriesPresent() fcn...
  }
-//alert("position 1");
+
   var line = [];
-  line[0] = "unuse-ignore";
-  line[1] = document.getElementById('unt').value;
-  line[2] = document.getElementById('pwt').value;
-  line[3] = document.getElementById('pnt').value;
- // alert("position 2");
-  line[4] = dmplyr;
-  //alert("position 3");
-  line[5] = document.getElementById('byt').value;
+  line[0] = document.getElementById('unt').value;  //this is always filled in with logged in orig name
+  line[1] = document.getElementById('pwt').value;
+  line[2] = document.getElementById('pnt').value;
+  line[3] = dmplyr;
+  line[4] = document.getElementById('byt').value;
 
   //now chk if any lines are = "" (not filled in);
   //and save which entries are missing if any...
  var errors = false;
  var errorList = []; 
-  for(var i = 0; i < line.length; i++)
+
+ //no need for i = 0 , that is usernameorig which ALWAYs must be present 
+ //because you have to have gotten logged in successfully to get here...
+  for(var i = 1; i < line.length; i++)  
   {
-    //alert("position 3a ... i = " + i + "..." + line[i] + "..." + errors);
-      if (line[i] == "")
-      
-        {  
-          if(( i != 3))
+   // alert(line[1] + "/" + PP2LastColumns[i - 1]);
+      if (line[i] == "") //if true there is a missing entry (remember phone# is optional)
+      {  
+          if( i != 2) // line[2] is phone# which is OPTIONAL so can never be an "error"
           {
-            //alert("position 4... i = " + i);
-          errors = true;
-          errorList.push(PP2LastColumns[i] + " ");
+              errors = true;
+              errorList.push(PP2LastColumns[i - 1] + " ");
           }
-        }      
+      }      
   }
   if(errors)
-  {   
-   //document.getElementById('nvmodal-content').style.border = "4px solid red";   
-   //document.getElementById('PP2ErrorBox').style.display = "none";  
-   //document.getElementById('PP2ErrorBox').style.border = "4px solid red";    
+  {       
     var data = [];
     data[0] = "ERROR: please correct...";
-    data[1] =  "All items are required to be filled in! The following item(s) need to be filled in ... ";
-    data[2] =  "error(s) @: " + errorList;
+    data[1] =  "All items are required to be filled in!(phone# is optional). The following item(s) need to be filled in ... ";
+    data[2] =  "error(s) for... " + errorList;
     data[3] =   ""; 
     data[4] = "PP2";
    // nvdisplayModal(data);
@@ -171,36 +165,39 @@ function PP2EntriesPresent()
   }
   else
   {
-    //close any error msg displayed
     objnvModal.style.display = "none";
     objNAVnvmc.style.height = objHeightnvmc;
-    PP2PhoneNumber(line[3]);   
+    PP2PhoneNumber(line[2]);   
   }
 }
 
 function PP2PhoneNumber(phonenum)
 {  
-  //alert("In Phone #");
+    alert("In Phone #  1");
     //chk if  (zipcode#) has exactly length 5 and all 5 digits are a number not a letter or... 
     if(phonenum == "")
     {
-      //alert("No Phone Number so DONE")
+      alert("No Phone Number so DONE")
       PP2ChkDataChanged()
     }
     else
     {
     phonenum = phonenum.trim();
+    alert("In Phone #  2");
     if(phonenum.length > 0)
     {
+      alert("In Phone #  3");
         if(phonenum.length < 10 || phonenum.length > 10)
          {    
-          document.getElementById('PP2ErrorBox').style.display = "none";
+          alert("In Phone #  4");
+          //document.getElementById('PP2ErrorBox').style.display = "none";
           //document.getElementById('PP2ErrorBox').style.border = "4px solid red";  
-            
+            var data = [];
             data[0] = "ERROR: Phone Number Length!";
             data[1] = "Phone Number must be EXACTLY 10 numbers long.";  
             data[2] =  "Please Correct...";
             data[3] =   ""; 
+            data[4] = "PP2";
             PPxdisplayModal(data);   
             return false;           
          }
@@ -239,7 +236,7 @@ var Err = false;
 
 function PP2ChkDataChanged()
 {
-   // alert("chking PP2ChkDataChanged() ");
+   alert("chking PP2ChkDataChanged() ");
    /* var keys = [1, 3, 4];
     var values = ["newPWD", 3, "1949"];
     for( i = 0; i < keys.length; i++)
