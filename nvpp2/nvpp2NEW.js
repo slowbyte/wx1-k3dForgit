@@ -44,11 +44,6 @@ function PP2createButtons()
   buttonPrv.addEventListener("click", PP2BtnPreNxtClked);
 }
 
-     
-        
-    
-
-
 function PP2Fill() 
 {
   alert("in PP2Fill ");
@@ -59,7 +54,7 @@ function PP2Fill()
   var line4dm = document.getElementById('pp2chk1');
   var line4plyr = document.getElementById('pp2chk2');
   var line5 = document.getElementById('byt');
- // alert("FillPP2_2");
+;
   line1.value = "";
   line2.value = "";
   line3.value = "";
@@ -67,11 +62,10 @@ function PP2Fill()
   line4plyr.checked = false;
   line5.value = ""; 
 
-  setTimeout(function() 
-  {  
+  //====below: check the correct DM and Plyr checkboxes correctly ======
   var DMPlyrNumb = 0;
-
-  DMPlyrNumb =PP2LastDBdata[3];  //DM
+  DMPlyrNumb =PP2LastDBdata[3];  // [3] is correct (not [2]) because login fcn added at index [0] the usernameorig value
+  //alert("in fill DMPlyrNumb = " +  DMPlyrNumb  );
   if(DMPlyrNumb == 1)
   {
     line4dm.checked = true;
@@ -85,18 +79,15 @@ function PP2Fill()
     line4dm.checked = true;
     line4plyr.checked = true;
   }
+//====above: check the correct DM and Plyr checkboxes correctly ======
 
-  
+  setTimeout(function() 
+  {  
   line1.value =PP2LastDBdata[0].trim(); // userOrig
   line2.value =PP2LastDBdata[1].trim();  //pwd
   line3.value =PP2LastDBdata[2].trim();  //phone#
-  DMPlyrNumb =PP2LastDBdata[3];  //DM
+  //DMPlyrNumb =PP2LastDBdata[3];  //DM
   line5.value =PP2LastDBdata[4].trim(); // birthday
-
-  if(lastProfileButtonPushed == "profile")
-  {
-   //alert("stopped end of FILL PP2");
-  }
   }, 100);
 }
 // END PRIMARY FUNCTIONS FOR LOADING PAGE PP2=========================
