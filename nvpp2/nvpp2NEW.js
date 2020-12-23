@@ -198,7 +198,7 @@ function PP2PhoneNumber(phonenum)
          }
      }
     //now are all Phone Number characters  numbers ONLY, if not pop up ERROR msg red box...
-var Err = false;
+    var Err = false;
     for ( var i = 0; i < phonenum.length; i++)
     {
        if( phonenum.charCodeAt(i)  <  48 ||  phonenum.charCodeAt(i)  > 57) // ERROR... found a non-numeric char....
@@ -220,7 +220,7 @@ var Err = false;
     } 
     else
     {
-       //close any error msg displayedl 
+       //close any error msg displayed 
        objnvModal.style.display = "none";
        objNAVnvmc.style.height = objHeightnvmc;
        PP2ChkDataChanged();         
