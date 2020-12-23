@@ -46,7 +46,7 @@ function PP2createButtons()
 
 function PP2Fill() 
 {
-  alert("in PP2Fill ");
+  //alert("in PP2Fill ");
   currentPPpage = 2;
   var line1 = document.getElementById('unt');
   var line2 = document.getElementById('pwt');
@@ -116,8 +116,7 @@ function PP2BtnPreNxtClked() //NEXT or PREVIOUS CLICKED @ PP2 page
 
 function PP2EntriesPresent()
 {
-  alert("in  PP2EntriesPresent()");  
- 
+  // alert("in  PP2EntriesPresent()");   
   //determine if @ least1 chkbox of either DM or Plyr is checked...
   dmplyr = "entry present"; //assume initially 1 or more is chked
 if((document.getElementById('pp2chk1').checked == false && document.getElementById('pp2chk2').checked == false))
@@ -173,23 +172,19 @@ if((document.getElementById('pp2chk1').checked == false && document.getElementBy
 
 function PP2PhoneNumber(phonenum)
 {  
-    alert("In Phone #  1");
     //chk if  (zipcode#) has exactly length 5 and all 5 digits are a number not a letter or... 
     if(phonenum == "")
     {
-      alert("No Phone Number so DONE")
+      //alert("No Phone Number so DONE")
       PP2ChkDataChanged()
     }
     else
     {
     phonenum = phonenum.trim();
-    alert("In Phone #  2");
     if(phonenum.length > 0)
     {
-      alert("In Phone #  3");
         if(phonenum.length < 10 || phonenum.length > 10)
          {    
-          alert("In Phone #  4");
           //document.getElementById('PP2ErrorBox').style.display = "none";
           //document.getElementById('PP2ErrorBox').style.border = "4px solid red";  
             var data = [];
@@ -204,23 +199,22 @@ function PP2PhoneNumber(phonenum)
      }
     //now are all Phone Number characters  numbers ONLY, if not pop up ERROR msg red box...
 var Err = false;
-
     for ( var i = 0; i < phonenum.length; i++)
     {
        if( phonenum.charCodeAt(i)  <  48 ||  phonenum.charCodeAt(i)  > 57) // ERROR... found a non-numeric char....
-       {
+       {     
            Err = true;
        }       
     }
+ 
     if(Err == true)
     {    
-          document.getElementById('PP2ErrorBox').style.display = "none";
-          //document.getElementById('PP2ErrorBox').style.border = "4px solid red";  
-
+          var data = [];
           data[0] = "ERROR: Phone Number Has NON-NUMBERS!";
           data[1] =  "Phone Number must consist of ONLY numbers. Spaces and letters are not allowed!"; 
           data[2] =  "Please Correct...";
           data[3] =   ""; 
+          data[4] = "PP2";
           PPxdisplayModal(data);   
           return false;                  
     } 
@@ -237,6 +231,7 @@ var Err = false;
 function PP2ChkDataChanged()
 {
    alert("chking PP2ChkDataChanged() ");
+   return;
    /* var keys = [1, 3, 4];
     var values = ["newPWD", 3, "1949"];
     for( i = 0; i < keys.length; i++)
