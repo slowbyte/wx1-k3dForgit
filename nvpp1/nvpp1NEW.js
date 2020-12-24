@@ -283,7 +283,7 @@ function PP1ChkDataChanged()
      entryChanged = false;
      $dataTmp = "";
      var index = 0;
-     alert("PP1LastDBdata = " + JSON.stringify(PP1LastDBdata));
+     //alert("PP1LastDBdata = " + JSON.stringify(PP1LastDBdata));
      for(var i = 0; i < line.length; i++)  
      {      
        if(line[i] != PP1LastDBdata[i].trim())

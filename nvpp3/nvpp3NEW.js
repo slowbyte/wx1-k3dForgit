@@ -289,10 +289,10 @@ function PP3ChkDataChanged()
           PP2Run();
       }
     }
-   else if(entryChanged == true)
-   {      
+    else if(entryChanged == true)
+    {      
       PP3Update($dataTmp, keys, newData);
-   }
+     }
 }
 // END FUNCTION PP3ChkDataChanged() ==========================================
 

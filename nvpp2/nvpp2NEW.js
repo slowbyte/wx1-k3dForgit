@@ -179,7 +179,7 @@ function PP2PhoneNumber(phonenum)
       PP2ChkDataChanged()
     }
     else
-    {
+  {
     phonenum = phonenum.trim();
     if(phonenum.length > 0)
     {
@@ -207,8 +207,8 @@ function PP2PhoneNumber(phonenum)
        }       
     }
  
-    if(Err == true)
-    {    
+      if(Err == true)
+      {    
           var data = [];
           data[0] = "ERROR: Phone Number Has NON-NUMBERS!";
           data[1] =  "Phone Number must consist of ONLY numbers. Spaces and letters are not allowed!"; 
@@ -217,98 +217,73 @@ function PP2PhoneNumber(phonenum)
           data[4] = "PP2";
           PPxdisplayModal(data);   
           return false;                  
-    } 
-    else
-    {
+     } 
+     else
+     {
        //close any error msg displayed 
        objnvModal.style.display = "none";
        objNAVnvmc.style.height = objHeightnvmc;
        PP2ChkDataChanged();         
-    }
+     }
   }
-  }
+}
 
 function PP2ChkDataChanged()
-{
-   alert("chking PP2ChkDataChanged() ");
-   return;
-   /* var keys = [1, 3, 4];
-    var values = ["newPWD", 3, "1949"];
-    for( i = 0; i < keys.length; i++)
-    {
-      alert(PP2LastDBdata[keys[i]] + " ... " + PP2LastDBdata[2]);
-        PP2LastDBdata[keys[i]]  =  values[i];
-      alert(PP2LastDBdata[keys[i]] + " ... " + PP2LastDBdata[2]);
-
-    }
-    return;
-    */
+ {
+  //alert("In PP2ChkDataChanged() );
     var keys = [];
     var newData = [];
     var line = [];
     line[0] = document.getElementById('pwt').value.trim();
     line[1] = document.getElementById('pnt').value.trim();
     line[2] = calcDMPlyrValue();      //document.getElementById('dmt').value.trim();
-    line[3] = document.getElementById('byt').value.trim();  // old values line[11] = document.getElementById('byt').value.trim();
-   
-     entryChanged = false;
-     $dataTmp = "";
-     var index = 0;
-     for(var i = 0; i < line.length; i++)  
-     {
-       if(line[i] != PP2LastDBdata[i].trim())
-       {       
-        //////////// alert(line[i]  + " ....." + PP2LastDBdata[i].trim());        
-         $dataTmp = $dataTmp + PP2LastColumns[i]   + "'" + line[i] + "'" + ", ";
-         keys[index] = i;
-         newData[index] = line[i];
-         index++;
-         entryChanged = true;
-         //alert($dataTmp);
-       }
-     }
-    /*  // alert(keys.length + "/" + newData.length);
-     for(j = 0; j <keys.length; j++)
-     {
-          alert(keys[j] + "/" + newData[j])
-     }
-     return;
-     */
-     var len = $dataTmp.length;
-      $dataTmp = $dataTmp.slice(0, len -2);
-      //alert("$dataTmp Final = " + $dataTmp); 
-     
+    line[3] = document.getElementById('byt').value.trim(); 
 
-    /* for(var i = 1; i < line.length; i++)   ORIG PRE- 11/23/2020
+  var entryChanged = false;
+  var $dataTmp = "";
+  var index = 0;
+  for (var i = 0; i < (line.length); i++)
+  {
+    //alert(line[i] + "/" + PP2LastDBdata[i + 1]);
+    if(line[i] != PP2LastDBdata[i + 1].trim());
      {
-       if(line[i] != PP2LastDBdata[i].trim())
-       {       
-         alert(line[i]  + " ....." + PP2LastDBdata[i].trim());
-         entryChanged = true;
-       }
-     }*/
+      $dataTmp = $dataTmp + PP2UpdateColumns[i]   + "'" + line[i] + "'" + ", ";
+      keys[index] = i;
+      newData[index] = line[i];
+      index++;
+      entryChanged = true; 
+      alert("here1 = " + PP2LastDBdata[i + 1]);         
+      }
+  }
+  var len = $dataTmp.length;
+  $dataTmp = $dataTmp.slice(0, len -2);
+   alert("$dataTmp Final = " + $dataTmp); 
 
-     if(entryChanged == false)
-     {
-       alert("Changed = false;lPBPushed = " + lastProfileButtonPushed);
-       //alert("NO CHANGES so on to: PP3Run() or back to PP1Run();");
+  //alert("chk for changed = " + entryChanged);
+   if(entryChanged == false) 
+  {   
+    //NO NEED TO UPDATE
+        alert("Changed = false; lPBPushed = " + lastProfileButtonPushed);
         objNAVnvpp2form.style.display = "none";
         document.getElementById('PP2ErrorBox').style.display = "none";
-       if( lastProfileButtonPushed == "Next")
+        // goto PrevPP1 or Next PP3.....
+        if( lastProfileButtonPushed == "Next")
+        {
+            PP3Run();
+        } 
+        else if(lastProfileButtonPushed == "Previous")  
        {
-          PP3Run();
-       } 
-       else if(lastProfileButtonPushed == "Previous")  
-      {
-          PP1Run();
-      }
-    }
-   else if(entryChanged == true)
+           PP1Run();
+        }
+   }
+   else if (entryChanged == true)
    {
-      //alert("have to save changes to dB");
-      PP2Update($dataTmp, keys, newData);
+     // alert("TRUE & have to save changes to dB");
+     PP2Update($dataTmp, keys, newData);  // have to update PP2 entries because 1 or more entries have been modified by user
    }
 }
+// END CHK FOR DATA CHANGED ==========================
+
 
 // BEGIN  PP2Update =============================================================================
 function PP2Update($dataStr, keys, newData)
