@@ -337,7 +337,7 @@ function PP1ChkDataChanged()
       var funcName =  "pp1UPDATEwrite"; 
       var dBtable = "tblProfilePg1"; 
       var dbValuesToInsert  =  $dataStr;           
-      alert("dbValuesToInsert:   "  + dbValuesToInsert);
+     // alert("dbValuesToInsert:   "  + dbValuesToInsert);
      
      $dbValues = [dbHost, dbUser, dbPwd, loggedUser, dbName, funcName, username.toLowerCase(), dbValuesToInsert , dbValuesToInsert, dBtable]; 
      //alert("dbValues = " + $dbValues);
@@ -351,7 +351,7 @@ function PP1ChkDataChanged()
        //need some kind of chk for success!
    if(pp1rtnUpdate == "success")
    {    
-        alert("Success & LBtn Pushed = " + lastProfileButtonPushed );
+        //alert("Success & LBtn Pushed = " + lastProfileButtonPushed );
      
        //Update PP1LastDBdata with ONLY the changes just made to the database...
        alert("==== " + PP1LastDBdata);  //original data b4 the Update
@@ -363,11 +363,10 @@ function PP1ChkDataChanged()
        }
        alert("+++ " + PP1LastDBdata); //new data after the Update
   
- 
          document.getElementById('PP1ErrorBox').style.display = "none";
          document.getElementById('PP2ErrorBox').style.display = "none";
          document.getElementById('PP3ErrorBox').style.display = "none";
-         objNAVnvpp2form.style.display = "none";
+         objNAVnvpp1form.style.display = "none";
 
         if( lastProfileButtonPushed == "Next")
         {
@@ -383,6 +382,7 @@ function PP1ChkDataChanged()
         //alert(pp1rtnUpdate);
         //Display Error that email is not available...
         document.getElementById('PP2ErrorBox').style.display = "none";
+        document.getElementById('PP3ErrorBox').style.display = "none";
         //document.getElementById('PP2ErrorBox').style.border = "4px solid red";  
         var data = [];
         data[0] = "ERROR: Update Problem; please correct...";

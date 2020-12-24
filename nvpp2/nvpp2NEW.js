@@ -300,7 +300,7 @@ function PP2Update($dataStr, keys, newData)
       //var dbHost = "74.207.235.136";
       var dbUser = "root";
       var dbPwd = "slowbyte1";
-      var loggedUser = username;
+      var loggedUser = PP123LastDBdata[9];
       var dbName = "cf1";
       var funcName =  "pp2UPDATEwrite";       
       var dBtable = "tblProfilePg1"; 
@@ -320,59 +320,16 @@ function PP2Update($dataStr, keys, newData)
    if(pp2rtnUpdate == "success")
    {    
         alert("Success & LBtn is Pushed = " + lastProfileButtonPushed );
-       //Save present PP2LastDBdata b4 updating to PP2PriorDBdata for "JUST IN CASE"
-    
-      /* var $PP2PriorOrig = "";
-       for(j = 0; j < PP2LastDBdata.length; j++)
-       {
-        $PP2PriorOrig =  $PP2PriorOrig + PP2PriorDBdata[j] + " ... ";
-       }
-       alert("PriorOrig: " + $PP2PriorOrig);
-
-       var $PP2Lastx = "";
-       for(j = 0; j < PP2LastDBdata.length; j++)
-       {
-        //$PP2Prior =  $PP2Prior + PP2PriorDBdata[j] + " ... ";
-        $PP2Lastx =  $PP2Lastx + PP2LastDBdata[j] + " ... ";
-       }
-       alert("Lastx: " + $PP2Lastx)
-      
-
-       PP2PriorDBdata = PP2LastDBdata;
-       var $PP2Priorx = "";
-       for(j = 0; j < PP2LastDBdata.length; j++)
-       {
-        //$PP2Prior =  $PP2Prior + PP2PriorDBdata[j] + " ... ";
-        $PP2Priorx =  $PP2Priorx + PP2PriorDBdata[j] + " ... ";
-        
-       }
-       alert("Priorx: " + $PP2Priorx)
-       */
+     
        //Update PP2LastDBdata with just the changes made to the database...
        alert("--- " + PP2LastDBdata);
        for(i = 0; i < keys.length; i++)
        {
          PP2LastDBdata[keys[i]]  = newData[i];
-         alert("i = ") + i + "/" + keys[i] + "/" + newData[i];
+         alert("key column name = " + PP2UpdateColumns[keys[i] ]);
        }
-       alert("+ " + PP2LastDBdata);
-        
-      /* var $PP2Prior = "";
-       var $PP2Last = "";
-       for(j = 0; j < PP2LastDBdata.length; j++)
-       {
-        $PP2Prior =  $PP2Prior + PP2PriorDBdata[j] + " ... ";
-        //$PP2Last =  $PP2Last + PP2LastDBdata[j] + " ... ";
-       }
-       for(j = 0; j < PP2LastDBdata.length; j++)
-       {
-        //$PP2Prior =  $PP2Prior + PP2PriorDBdata[j] + " ... ";
-          $PP2Last =  $PP2Last + PP2LastDBdata[j] + " ... ";
-       }
-       alert($PP2Prior + "\r\n" + $PP2Last + "\r\n" + $PP2Lastx + "\r\n" + $PP2Priorx + "\r\n" + $PP2PriorOrig);
-       */
-       //return;
- 
+       alert("+++ " + PP2LastDBdata);
+         
          document.getElementById('PP1ErrorBox').style.display = "none";
          document.getElementById('PP2ErrorBox').style.display = "none";
          document.getElementById('PP3ErrorBox').style.display = "none";
@@ -410,7 +367,9 @@ function PP2Update($dataStr, keys, newData)
     pp2rtnUpdate = PP2ajax($dbValues);
 }
 // END  PP2Update ==========================================================================
+// END PRIMARY FUNCTIONS FOR PP1 NEXT BUTTON CLICKED =============
 
+// BEGIN PP2 HELPER FUNCTIONS =====================================
  function calcDMPlyrValue()
  {
   dmObjState = document.getElementById('pp2chk1').checked;
@@ -527,6 +486,6 @@ function PP2ajax($dbValues)
 return $yourVariable;
 }   
 // END FUNCTION PP2ajax() ===================================================================
-
+// END PP2 HELPER FUNCTIONS =====================================
   
   
