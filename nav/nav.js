@@ -241,31 +241,30 @@ function chooseWhichPPpage()
 
 function SetLastDBdataArrays(data, dothese)
 {
+ // alert("data parameters = " + JSON.stringify(data));  
  //PP1 only below 
  if(dothese == "all" || dothese == "PP1")
  {
    //alert("do PP1");
-  for(var j = 0; j < 7;  j++) //new 12/20/2020  don't start at 0 which is userID col. start @ 1 which is firstname col
-     {          
+  for(var j = 0; j < 7;  j++) //new 12/20/2020  for data[] don't start at 0 which is userID col. start @ 1 which is firstname col
+     {                 
+           PP1LastDBdata[j] = data[j + 1] 
+          // alert("j = " + j +" ... "  +  PP1LastDBdata[j] +"/" + data[j + 1]);  
+          // alert(PP1UpdateColumns[j] + data[j + 1]);             
 
-           PP1LastDBdata[j] = data[j + 1]              
-     }
-    // PP1LastDBdata[j] = data[7];
-     //alert("PP1... [" + PP1LastDBdata + "]");
+     } 
  }
 
 //PP2 only below 
 if(dothese == "all" || dothese == "PP2")
  {
   //alert("do PP2")
-  for(var j = 0; j < 5;  j++)
+  for(var j = 1; j < 5;  j++)
      {          
-           PP2LastDBdata[j] = data[j + 9] ;  //remember we alrdy used up data[0 through 6]  in the PP1 for loop      
-           //alert(PP2LastDBdata);  
-     }
-     //alert(j);
-     //PP2LastDBdata[j] = data[13];
-     //alert("PP2... [" + PP2LastDBdata + "]");
+           PP2LastDBdata[j - 1] = data[j + 9] ;  //remember we alrdy used up data[1 through 7]  in the PP1 for loop      
+           alert("j = " + j +" ... "  +  PP2LastDBdata[j - 1] +"/" + data[j + 9]);    
+           alert(PP2UpdateColumns[j - 1] + data[j + 9])   
+     }     
   }     
 
 //PP3 only below 
@@ -275,9 +274,9 @@ if(dothese == "all" || dothese == "PP3")
   for(var j = 0; j < 4;  j++)
     {          
         PP3LastDBdata[j] = data[j + 18 ] ;  //remember we alrdy used up data[0 through 13]  in the PP1 + PP2 for loop      
-        //alert("PP3 data: " + (j + 14) + "/" + data[j + 14 ]);  
+        // alert("j = " + j +" ... "  +  PP3LastDBdata[j] +"/" + data[j + 18]); 
+        //alert(PP3UpdateColumns[j] + data[j + 18])
     }
-    //alert("PP3... [" + PP3LastDBdata + "]");
   }
 
 //PP123 only below

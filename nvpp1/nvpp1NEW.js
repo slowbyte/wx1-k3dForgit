@@ -357,9 +357,9 @@ function PP1ChkDataChanged()
        alert("==== " + PP1LastDBdata);  //original data b4 the Update
       // for(i = 1; i < keys.length; i++)
        for(i = 0; i < keys.length; i++)
-       {
+       {    
          PP1LastDBdata[keys[i]]  = newData[i];
-         alert("key column name = " + PP1UpdateColumns[keys[i] ]);
+         //alert("key column name = " + PP1UpdateColumns[keys[i] ]);
        }
        alert("+++ " + PP1LastDBdata); //new data after the Update
   

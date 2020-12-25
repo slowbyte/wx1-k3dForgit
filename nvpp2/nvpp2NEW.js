@@ -234,25 +234,29 @@ function PP2ChkDataChanged()
     var keys = [];
     var newData = [];
     var line = [];
-    line[0] = document.getElementById('pwt').value.trim();
-    line[1] = document.getElementById('pnt').value.trim();
-    line[2] = calcDMPlyrValue();      //document.getElementById('dmt').value.trim();
-    line[3] = document.getElementById('byt').value.trim(); 
+    line[0] = "";  //usernameorig will be used here below
+    line[1] = document.getElementById('pwt').value.trim();
+    line[2] = document.getElementById('pnt').value.trim();
+    line[3] = calcDMPlyrValue();      //document.getElementById('dmt').value.trim();
+    line[4] = document.getElementById('byt').value.trim(); 
 
   var entryChanged = false;
   var $dataTmp = "";
   var index = 0;
-  for (var i = 0; i < (line.length); i++)
+  newData[0] = PP123LastDBdata[9];
+  for (var i = 1; i < (line.length); i++)
   {
     //alert(line[i] + "/" + PP2LastDBdata[i + 1]);
-    if(line[i] != PP2LastDBdata[i + 1].trim());
+    if(line[i] != PP2LastDBdata[i].trim());
      {
-      $dataTmp = $dataTmp + PP2UpdateColumns[i]   + "'" + line[i] + "'" + ", ";
+      $dataTmp = $dataTmp + PP2UpdateColumns[i - 1]   + "'" + line[i] + "'" + ", ";
+      alert("in chkdatachanged $dataTmp = " + i + "/" + $dataTmp);
       keys[index] = i;
       newData[index] = line[i];
+      alert("in chkdatachanged newData = " + index + "/" + newData[index]);
       index++;
       entryChanged = true; 
-      alert("here1 = " + PP2LastDBdata[i + 1]);         
+      alert("here1 = " + PP2LastDBdata[i]);         
       }
   }
   var len = $dataTmp.length;
@@ -323,10 +327,12 @@ function PP2Update($dataStr, keys, newData)
      
        //Update PP2LastDBdata with just the changes made to the database...
        alert("--- " + PP2LastDBdata);
-       for(i = 0; i < keys.length; i++)
-       {
+       PP2LastDBdata[keys[0]]  = loggedUser;
+       for(i = 1; i < keys.length; i++)
+       {         
          PP2LastDBdata[keys[i]]  = newData[i];
-         alert("key column name = " + PP2UpdateColumns[keys[i] ]);
+         alert("in for loop for +++ " + i + "/" + PP2LastDBdata[keys[i]] + "/"  + newData[i -1])
+         //alert("key column name = " + PP2UpdateColumns[keys[i] ]);
        }
        alert("+++ " + PP2LastDBdata);
          
