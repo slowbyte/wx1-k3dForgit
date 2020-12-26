@@ -64,7 +64,7 @@ function PP2Fill()
 
   //====below: check the correct DM and Plyr checkboxes correctly ======
   var DMPlyrNumb = 0;
-  DMPlyrNumb =PP2LastDBdata[3];  // [3] is correct (not [2]) because login fcn added at index [0] the usernameorig value
+  DMPlyrNumb =PP2LastDBdata[2];  
   //alert("in fill DMPlyrNumb = " +  DMPlyrNumb  );
   if(DMPlyrNumb == 1)
   {
@@ -83,11 +83,11 @@ function PP2Fill()
 
   setTimeout(function() 
   {  
-  line1.value =PP2LastDBdata[0].trim(); // userOrig
-  line2.value =PP2LastDBdata[1].trim();  //pwd
-  line3.value =PP2LastDBdata[2].trim();  //phone#
-  //DMPlyrNumb =PP2LastDBdata[3];  //DM
-  line5.value =PP2LastDBdata[4].trim(); // birthday
+  line1.value =PP123LastDBdata[9].trim(); // usernameOrig
+  line2.value =PP2LastDBdata[0].trim();  //pwd
+  line3.value =PP2LastDBdata[1].trim();  //phone#
+  //DM =    //DM was set above alrdy with line4dm and line4plyr 
+  line5.value =PP2LastDBdata[3].trim(); // birthday
   }, 100);
 }
 // END PRIMARY FUNCTIONS FOR LOADING PAGE PP2=========================
@@ -119,7 +119,7 @@ function PP2EntriesPresent()
   // alert("in  PP2EntriesPresent()");   
   //determine if @ least1 chkbox of either DM or Plyr is checked...
   dmplyr = "entry present"; //assume initially 1 or more is chked
-if((document.getElementById('pp2chk1').checked == false && document.getElementById('pp2chk2').checked == false))
+if(document.getElementById('pp2chk1').checked == false && document.getElementById('pp2chk2').checked == false)
  {
    dmplyr = "";  //no DM or Plyr checkbox is checked... so will error out this PP2EntriesPresent() fcn...
  }
@@ -138,9 +138,8 @@ if((document.getElementById('pp2chk1').checked == false && document.getElementBy
 
  //no need for i = 0 , that is usernameorig which ALWAYs must be present 
  //because you have to have gotten logged in successfully to get here...
-  for(var i = 1; i < line.length; i++)  
+  for(var i = 0; i < line.length; i++)  
   {
-   // alert(line[1] + "/" + PP2LastColumns[i - 1]);
       if (line[i] == "") //if true there is a missing entry (remember phone# is optional)
       {  
           if( i != 2) // line[2] is phone# which is OPTIONAL so can never be an "error"
@@ -230,41 +229,38 @@ function PP2PhoneNumber(phonenum)
 
 function PP2ChkDataChanged()
  {
-  //alert("In PP2ChkDataChanged() );
+    //alert("In PP2ChkDataChanged()" );
     var keys = [];
     var newData = [];
     var line = [];
-    line[0] = "";  //usernameorig will be used here below
-    line[1] = document.getElementById('pwt').value.trim();
-    line[2] = document.getElementById('pnt').value.trim();
-    line[3] = calcDMPlyrValue();      //document.getElementById('dmt').value.trim();
-    line[4] = document.getElementById('byt').value.trim(); 
+    //line[0] = "";  //usernameorig will be used here below
+    line[0] = document.getElementById('pwt').value.trim();
+    line[1] = document.getElementById('pnt').value.trim();
+    line[2] = calcDMPlyrValue();      //need the single value number here like the database uses
+    line[3] = document.getElementById('byt').value.trim(); 
 
   var entryChanged = false;
   var $dataTmp = "";
   var index = 0;
-  newData[0] = PP123LastDBdata[9];
-  for (var i = 1; i < (line.length); i++)
+
+  for (var i = 0; i < line.length; i++)
   {
-    //alert(line[i] + "/" + PP2LastDBdata[i + 1]);
-    if(line[i] != PP2LastDBdata[i].trim());
+    //alert("b4 if I = " + i + "/" + line[i] + "/" + PP2LastDBdata[i]);
+    if(line[i] != PP2LastDBdata[i].trim()) // when if is TRUE it means a particular line[x] has changed...
      {
-      $dataTmp = $dataTmp + PP2UpdateColumns[i - 1]   + "'" + line[i] + "'" + ", ";
-      alert("in chkdatachanged $dataTmp = " + i + "/" + $dataTmp);
+      $dataTmp = $dataTmp + PP2UpdateColumns[i]   + "'" + line[i] + "'" + ", ";
       keys[index] = i;
       newData[index] = line[i];
-      alert("in chkdatachanged newData = " + index + "/" + newData[index]);
       index++;
-      entryChanged = true; 
-      alert("here1 = " + PP2LastDBdata[i]);         
+      entryChanged = true;         
       }
   }
   var len = $dataTmp.length;
-  $dataTmp = $dataTmp.slice(0, len -2);
+  $dataTmp = $dataTmp.slice(0, len -2); //remove the last comma at end of this string so dataBase Update works correctly in next fcn
    alert("$dataTmp Final = " + $dataTmp); 
 
   //alert("chk for changed = " + entryChanged);
-   if(entryChanged == false) 
+  if(entryChanged == false) 
   {   
     //NO NEED TO UPDATE
         alert("Changed = false; lPBPushed = " + lastProfileButtonPushed);
@@ -282,7 +278,7 @@ function PP2ChkDataChanged()
    }
    else if (entryChanged == true)
    {
-     // alert("TRUE & have to save changes to dB");
+     // alert("TRUE & have to save changes to dB so call the Update fcn!");
      PP2Update($dataTmp, keys, newData);  // have to update PP2 entries because 1 or more entries have been modified by user
    }
 }
@@ -309,7 +305,7 @@ function PP2Update($dataStr, keys, newData)
       var funcName =  "pp2UPDATEwrite";       
       var dBtable = "tblProfilePg1"; 
       var dbValuesToInsert  =  $dataStr; 
-      //alert("dbValuesToInsert:   "  + dbValuesToInsert);
+      alert("dbValuesToInsert:   "  + dbValuesToInsert);
      
      $dbValues = [dbHost, dbUser, dbPwd, loggedUser, dbName, funcName, username.toLowerCase(), dbValuesToInsert , dbValuesToInsert, dBtable]; 
     // alert("dbValues = " + $dbValues);
@@ -318,6 +314,7 @@ function PP2Update($dataStr, keys, newData)
     {     
        pp2rtnUpdate = PP2ajax($dbValues);
       // alert(pp2rtnUpdate)
+      
 
       //SUCCESS CODE BEGINS ========================================================================
        //need some kind of chk for success!
@@ -327,11 +324,11 @@ function PP2Update($dataStr, keys, newData)
      
        //Update PP2LastDBdata with just the changes made to the database...
        alert("--- " + PP2LastDBdata);
-       PP2LastDBdata[keys[0]]  = loggedUser;
-       for(i = 1; i < keys.length; i++)
+       //PP2LastDBdata[keys[0]]  = loggedUser;
+       for(i = 0; i < keys.length; i++)
        {         
          PP2LastDBdata[keys[i]]  = newData[i];
-         alert("in for loop for +++ " + i + "/" + PP2LastDBdata[keys[i]] + "/"  + newData[i -1])
+         alert("in for loop for +++ " + i + "/" + PP2LastDBdata[keys[i]] + "/"  + newData[i])
          //alert("key column name = " + PP2UpdateColumns[keys[i] ]);
        }
        alert("+++ " + PP2LastDBdata);

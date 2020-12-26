@@ -262,8 +262,8 @@ if(dothese == "all" || dothese == "PP2")
   for(var j = 1; j < 5;  j++)
      {          
            PP2LastDBdata[j - 1] = data[j + 9] ;  //remember we alrdy used up data[1 through 7]  in the PP1 for loop      
-           alert("j = " + j +" ... "  +  PP2LastDBdata[j - 1] +"/" + data[j + 9]);    
-           alert(PP2UpdateColumns[j - 1] + data[j + 9])   
+           //alert("j = " + j +" ... "  +  PP2LastDBdata[j - 1] +"/" + data[j + 9]);    
+           //alert(PP2UpdateColumns[j - 1] + data[j + 9])   
      }     
   }     
 
