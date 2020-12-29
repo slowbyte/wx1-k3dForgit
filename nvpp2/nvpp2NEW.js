@@ -96,7 +96,7 @@ function PP2Fill()
 // BEGIN PRIMARY FUNCTIONS FOR PP2 PREVIOUS/NEXT BUTTON CLICKED ============================
 function PP2BtnPreNxtClked() //NEXT or PREVIOUS CLICKED @ PP2 page
 {
-   //alert("PP2 BtnPreNxtClked() "); 
+   alert("PP2 BtnPreNxtClked() "); 
    //Prev or Nxt Clicked???
    if(this.id == "nvpp2btnnxt")
    {
@@ -230,7 +230,7 @@ function PP2PhoneNumber(phonenum)
 
 function PP2ChkDataChanged()
  {
-    //alert("In PP2ChkDataChanged()" );
+    alert("In PP2ChkDataChanged()" );
     var keys = [];
     var newData = [];
     var line = [];
@@ -244,12 +244,32 @@ function PP2ChkDataChanged()
   var $dataTmp = "";
   var index = 0;
 
-  for (var i = 0; i < line.length; i++)
+  for (var j = 0; j < line.length; j++)
   {
-    alert("b4 if I = " + i + "/" + line[i] + "/" + PP2LastDBdata[i]);
+    if(PP2LastDBdata[j] != line[j])
+    {
+      alert("For J = " + j + "     Not Equal and that's WHAT we want");
+      alert("j = " + j + "   if is true...  != ");
+      $dataTmp = $dataTmp + PP2UpdateColumns[j]   + "'" + line[j] + "'" + ", ";
+      keys[index] = j;
+      newData[index] = line[j];
+      index++;
+      entryChanged = true;     
+    }
+    else if(PP2LastDBdata[j] == line[j])
+    {
+      alert("For J = " + j +  "     Equal and that's NOT what we want");
+    }
+  } 
+   
+
+
+ /* for (var i = 0; i < line.length; i++)
+  {
+    //alert("b4 if I = " + i + "/" + line[i] + "/" + PP2LastDBdata[i]);
     if(line[i] != PP2LastDBdata[i].trim()) // when if is TRUE it means a particular line[x] has changed...
      {
-         alert("if is true");
+      alert("i = " + i + "   if is true...  != ");
       $dataTmp = $dataTmp + PP2UpdateColumns[i]   + "'" + line[i] + "'" + ", ";
       keys[index] = i;
       newData[index] = line[i];
@@ -258,13 +278,12 @@ function PP2ChkDataChanged()
       }
       else if(line[i] == PP2LastDBdata[i].trim())
       {
-          alert("if was false so we are now in the else if");
+          alert("i = " + i + "   if was false so we are now in the else if... == ");
       }
-
-  }
+  }*/
   var len = $dataTmp.length;
   $dataTmp = $dataTmp.slice(0, len -2); //remove the last comma at end of this string so dataBase Update works correctly in next fcn
-   alert("$dataTmp Final = " + $dataTmp); 
+  alert("$dataTmp Final = " + $dataTmp); 
 
   //alert("chk for changed = " + entryChanged);
   if(entryChanged == false) 
@@ -288,6 +307,7 @@ function PP2ChkDataChanged()
      // alert("TRUE & have to save changes to dB so call the Update fcn!");
      PP2Update($dataTmp, keys, newData);  // have to update PP2 entries because 1 or more entries have been modified by user
    }
+   return;
 }
 // END CHK FOR DATA CHANGED ==========================
 
