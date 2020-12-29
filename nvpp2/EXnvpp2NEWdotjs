@@ -1,6 +1,5 @@
-//this is one commit backwards for this file
-// BEGIN PRIMARY FUNCTIONS FOR LOADING PAGE PP2 ===========================
-function PP2Run()
+  // BEGIN PRIMARY FUNCTIONS FOR LOADING PAGE PP2 ===========================
+  function PP2Run()  // this .js is not working at all. won't even start running PP2Run()... went back one commit to get away from this FUBAR....
 {
     alert("in PP2Run()");
     objNAVnvpp1form.style.display = "none";    
@@ -18,7 +17,7 @@ function PP2Run()
        nvpp2btncreated = true;
      }
      
-      PP2Fill() ;
+     PP2Fill() ;
  }
 
 function PP2createButtons() 
@@ -47,7 +46,7 @@ function PP2createButtons()
 
 function PP2Fill() 
 {
-  //alert("in PP2Fill ");
+  alert("in PP2Fill ");
   currentPPpage = 2;
   var line1 = document.getElementById('unt');
   var line2 = document.getElementById('pwt');
@@ -96,7 +95,7 @@ function PP2Fill()
 // BEGIN PRIMARY FUNCTIONS FOR PP2 PREVIOUS/NEXT BUTTON CLICKED ============================
 function PP2BtnPreNxtClked() //NEXT or PREVIOUS CLICKED @ PP2 page
 {
-   //alert("PP2 BtnPreNxtClked() "); 
+   alert("PP2 BtnPreNxtClked() "); 
    //Prev or Nxt Clicked???
    if(this.id == "nvpp2btnnxt")
    {
@@ -106,6 +105,7 @@ function PP2BtnPreNxtClked() //NEXT or PREVIOUS CLICKED @ PP2 page
    {
      lastProfileButtonPushed = "Previous";  
    }
+   alert("btn pressed is " + lastProfileButtonPushed);
    document.getElementById('PP2ErrorBox').style.display = "none";
    objnvModal.style.display = "none";
    objNAVnvmc.style.height = objHeightnvmc;
@@ -117,7 +117,7 @@ function PP2BtnPreNxtClked() //NEXT or PREVIOUS CLICKED @ PP2 page
 
 function PP2EntriesPresent()
 {
-  // alert("in  PP2EntriesPresent()");   
+   alert("in  PP2EntriesPresent()");   
   //determine if @ least1 chkbox of either DM or Plyr is checked...
   dmplyr = "entry present"; //assume initially 1 or more is chked
 if(document.getElementById('pp2chk1').checked == false && document.getElementById('pp2chk2').checked == false)
@@ -172,6 +172,7 @@ if(document.getElementById('pp2chk1').checked == false && document.getElementByI
 
 function PP2PhoneNumber(phonenum)
 {  
+  alert("In fcn PP2PhoneNumber ");
     //chk if  (zipcode#) has exactly length 5 and all 5 digits are a number not a letter or... 
     if(phonenum == "")
     {
@@ -230,7 +231,7 @@ function PP2PhoneNumber(phonenum)
 
 function PP2ChkDataChanged()
  {
-    //alert("In PP2ChkDataChanged()" );
+    alert("In PP2ChkDataChanged()" );
     var keys = [];
     var newData = [];
     var line = [];
@@ -243,24 +244,30 @@ function PP2ChkDataChanged()
   var entryChanged = false;
   var $dataTmp = "";
   var index = 0;
-
+ 
   for (var i = 0; i < line.length; i++)
   {
-    alert("b4 if I = " + i + "/" + line[i] + "/" + PP2LastDBdata[i]);
-    if(line[i] != PP2LastDBdata[i].trim()) // when if is TRUE it means a particular line[x] has changed...
+   // alert(" 2...  for loop//  i =  " + i);
+    //alert("b4 if I = " + i + "/" + line[i] + "/" + PP2LastDBdata[i]);
+    //alert("line[2] = "  + line[2]  + "/"   + PP2LastDBdata[2]);
+    if(PP2LastDBdata[i] != line[i])
+    {
+      alert("Not Equal and that's WHAT we want")
+    }
+    else if(PP2LastDBdata[2] == line[2])
+    {
+      alert("Equal and that's NOT what we want")
+    }
+
+   /* if(PP2LastDBdata[i] != line[i]) // when if is TRUE it means a particular line[x] has changed...
      {
-         alert("if is true");
+       alert("3-  inside of if for not equal...  I = " + i + "/" + line[i] + "/" + PP2LastDBdata[i].trim())
       $dataTmp = $dataTmp + PP2UpdateColumns[i]   + "'" + line[i] + "'" + ", ";
       keys[index] = i;
       newData[index] = line[i];
       index++;
       entryChanged = true;         
       }
-      else if(line[i] == PP2LastDBdata[i].trim())
-      {
-          alert("if was false so we are now in the else if");
-      }
-
   }
   var len = $dataTmp.length;
   $dataTmp = $dataTmp.slice(0, len -2); //remove the last comma at end of this string so dataBase Update works correctly in next fcn
@@ -289,6 +296,7 @@ function PP2ChkDataChanged()
      PP2Update($dataTmp, keys, newData);  // have to update PP2 entries because 1 or more entries have been modified by user
    }
 }
+*/
 // END CHK FOR DATA CHANGED ==========================
 
 
@@ -348,12 +356,12 @@ function PP2Update($dataStr, keys, newData)
         if( lastProfileButtonPushed == "Next")
         {
              lastProfileButtonPushed = "NONE"
-             PP3Run();
+             //////////////////////////////////////////////////////////////////////////////////////////PP3Run();
         }       
         else if( lastProfileButtonPushed == "Previous")
         {
               lastProfileButtonPushed = "NONE"
-              PP1Run();
+             /////////////////////////////////////////////////////////////////////////////////////////// PP1Run();
         }
     }
      //SUCCESS CODE ENDS ========================================================================    
@@ -473,27 +481,28 @@ function PP2ajax($dbValues)
   }
    //alert("Ajax FUNCTION CALLED = " + funcCalled);
    //alert("AJAX dbval = " + $dbValues);
-    jQuery.ajax({type: "POST", url: "nvpp1/testDB.php", dataType: 'json', data: {functionname: funcCalled, arguments: [$dbValues, 'blank'] },
-        success: function (obj, textstatus)
-                   {           
-                      if( !('error' in obj) )
-                      {
+	jQuery.ajax({type: "POST", url: "nvpp1/testDB.php", dataType: 'json', data: {functionname: funcCalled, arguments: [$dbValues, 'blank'] },
+		success: function (obj, textstatus)
+				   {           
+					  if( !('error' in obj) )
+					  {
               $yourVariable = obj.result;
               //alert(obj.result);
                if(funcName == "updateDB")
                {
                alert(textstatus); //do this only when WRITTING TO DB NOT WHEN READING FROM DB
                }
-                      }
-                      else
-                      {
+					  }
+					  else
+					  {
               alert(obj.error);
               alert('fuckME');
-                          //console.log(obj.error);
-                      }
+						  //console.log(obj.error);
+					  }
            }
           });
 return $yourVariable;
 }   
 // END FUNCTION PP2ajax() ===================================================================
 // END PP2 HELPER FUNCTIONS =====================================
+  
