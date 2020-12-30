@@ -99,7 +99,7 @@ function PP1BtnNxtClked()
     if (line[i] == "")
      {
       errors = true;
-      alert("line[" + i + "] = " + line[i]);
+      //alert("line[" + i + "] = " + line[i]);
       errorList.push(PP1LastColumns[i] + " ");
     }
   }
@@ -224,7 +224,7 @@ function PP1IsEmailEntryAvail()
             //alert("2nd call has returned here, good");            
             loopRan = false;
             //alert("datax = " + datax);
-            alert("pp1rtnEmail = " + pp1rtnEmail);
+            //alert("pp1rtnEmail = " + pp1rtnEmail);
             if (pp1rtnEmail == "BeingUsed")
             {
               //PP1ChkDataChanged("BeingUsed");
@@ -243,13 +243,13 @@ function PP1IsEmailEntryAvail()
            
             else if (pp1rtnEmail == "Not  Used")                 // && lastProfileButtonPushed == "next")  
            {
-             alert("Not  Used from Email Fcn");
+             //alert("Not  Used from Email Fcn");
              //alert("end of Email Chk is "NotUsed" Calling CHK DATACHANGED");
             PP1ChkDataChanged("Not  Used");
            }
            else if (pp1rtnEmail == "IOwnEmail" )             // && lastProfileButtonPushed == "profile")  
            {
-            alert("IOwnEmail from Email Fcn");
+            //alert("IOwnEmail from Email Fcn");
             // alert("end of Email Chk @ IOE Calling CHK DATACHANGED fcn");
             PP1ChkDataChanged("IOwnEmail");        
            }
@@ -267,7 +267,7 @@ function PP1IsEmailEntryAvail()
 
 function PP1ChkDataChanged()
 {  //working OK 12/20/2020 @ 7:10pm
-   alert("chking PP1ChkDataChanged() ");
+   //alert("chking PP1ChkDataChanged() ");
     var keys = [];
     var newData = [];
     var line = [];
@@ -293,34 +293,34 @@ function PP1ChkDataChanged()
          newData[index] = line[i];
          index++;
          entryChanged = true; 
-         alert("here1 = " + PP1LastDBdata[i]);        
+         //alert("here1 = " + PP1LastDBdata[i]);        
        }
      }
       var len = $dataTmp.length;
       $dataTmp = $dataTmp.slice(0, len -2);
-      alert("$dataTmp Final = " + $dataTmp); 
+    //  alert("$dataTmp Final = " + $dataTmp); 
      
      if(entryChanged == false)  
      {  //No changes so no update needed!
-        alert("Changed = false; lPBPushed = " + lastProfileButtonPushed);
+       // alert("Changed = false; lPBPushed = " + lastProfileButtonPushed);
         objNAVnvpp1form.style.display = "none";
         document.getElementById('PP1ErrorBox').style.display = "none";
        if( lastProfileButtonPushed == "Next")
        {
-          alert("finished with last profile page PP1 onward to PP2");
+         // alert("finished with last profile page PP1 onward to PP2");
           PP2Run();
        }        
     }
    else if(entryChanged == true)
    {      
-     alert("entry change is true... goto Update fcn");
+     //alert("entry change is true... goto Update fcn");
       PP1Update($dataTmp, keys, newData);
    }
 }
 
    function PP1Update($dataStr, keys, newData)
 {
-  alert("in the PP1Update func \n\r" + $dataStr + "\n\r" + keys + "\n\r" + newData);
+  //alert("in the PP1Update func \n\r" + $dataStr + "\n\r" + keys + "\n\r" + newData);
   if( !(lastProfileButtonPushed == "Next" ))
   {
     //alert("In PP1Update w/o Next clked");
