@@ -2,7 +2,7 @@
 // BEGIN PRIMARY FUNCTIONS FOR LOADING PAGE PP2 ===========================
 function PP2Run()
 {
-    alert("in PP2Run()");
+    //alert("in PP2Run()");
     objNAVnvpp1form.style.display = "none";    
     objNAVnvpp3form.style.display = "none";
     currentPPpage = 2;
@@ -96,7 +96,7 @@ function PP2Fill()
 // BEGIN PRIMARY FUNCTIONS FOR PP2 PREVIOUS/NEXT BUTTON CLICKED ============================
 function PP2BtnPreNxtClked() //NEXT or PREVIOUS CLICKED @ PP2 page
 {
-   alert("PP2 BtnPreNxtClked() "); 
+   //alert("PP2 BtnPreNxtClked() "); 
    //Prev or Nxt Clicked???
    if(this.id == "nvpp2btnnxt")
    {
@@ -230,7 +230,7 @@ function PP2PhoneNumber(phonenum)
 
 function PP2ChkDataChanged()
  {
-    alert("In PP2ChkDataChanged()" );
+   //alert("In PP2ChkDataChanged()" );
     var keys = [];
     var newData = [];
     var line = [];
@@ -248,8 +248,8 @@ function PP2ChkDataChanged()
   {
     if(PP2LastDBdata[j] != line[j])
     {
-      alert("For J = " + j + "     Not Equal and that's WHAT we want");
-      alert("j = " + j + "   if is true...  != ");
+      //alert("For J = " + j + "     Not Equal and that's WHAT we want");
+      //alert("j = " + j + "   if is true...  != ");
       $dataTmp = $dataTmp + PP2UpdateColumns[j]   + "'" + line[j] + "'" + ", ";
       keys[index] = j;
       newData[index] = line[j];
@@ -258,38 +258,19 @@ function PP2ChkDataChanged()
     }
     else if(PP2LastDBdata[j] == line[j])
     {
-      alert("For J = " + j +  "     Equal and that's NOT what we want");
+      //alert("For J = " + j +  "     Equal and that's NOT what we want");
     }
   } 
    
-
-
- /* for (var i = 0; i < line.length; i++)
-  {
-    //alert("b4 if I = " + i + "/" + line[i] + "/" + PP2LastDBdata[i]);
-    if(line[i] != PP2LastDBdata[i].trim()) // when if is TRUE it means a particular line[x] has changed...
-     {
-      alert("i = " + i + "   if is true...  != ");
-      $dataTmp = $dataTmp + PP2UpdateColumns[i]   + "'" + line[i] + "'" + ", ";
-      keys[index] = i;
-      newData[index] = line[i];
-      index++;
-      entryChanged = true;         
-      }
-      else if(line[i] == PP2LastDBdata[i].trim())
-      {
-          alert("i = " + i + "   if was false so we are now in the else if... == ");
-      }
-  }*/
   var len = $dataTmp.length;
   $dataTmp = $dataTmp.slice(0, len -2); //remove the last comma at end of this string so dataBase Update works correctly in next fcn
-  alert("$dataTmp Final = " + $dataTmp); 
+  //alert("$dataTmp Final = " + $dataTmp); 
 
   //alert("chk for changed = " + entryChanged);
   if(entryChanged == false) 
   {   
     //NO NEED TO UPDATE
-        alert("Changed = false; lPBPushed = " + lastProfileButtonPushed);
+        //alert("Changed = false; lPBPushed = " + lastProfileButtonPushed);
         objNAVnvpp2form.style.display = "none";
         document.getElementById('PP2ErrorBox').style.display = "none";
         // goto PrevPP1 or Next PP3.....
@@ -315,7 +296,7 @@ function PP2ChkDataChanged()
 // BEGIN  PP2Update =============================================================================
 function PP2Update($dataStr, keys, newData)
 {
-  alert("in the PP2Update func... " + $dataStr + "/" + keys + "/"  + newData);  
+  //alert("in the PP2Update func... " + $dataStr + "/" + keys + "/"  + newData);  
   if( !(lastProfileButtonPushed == "Next" || lastProfileButtonPushed == "Previous"))
   {
     //alert("In PP2Update w/o Next or Previous clked");
@@ -332,7 +313,7 @@ function PP2Update($dataStr, keys, newData)
       var funcName =  "pp2UPDATEwrite";       
       var dBtable = "tblProfilePg1"; 
       var dbValuesToInsert  =  $dataStr; 
-      alert("dbValuesToInsert:   "  + dbValuesToInsert);
+      //alert("dbValuesToInsert:   "  + dbValuesToInsert);
      
      $dbValues = [dbHost, dbUser, dbPwd, loggedUser, dbName, funcName, username.toLowerCase(), dbValuesToInsert , dbValuesToInsert, dBtable]; 
     // alert("dbValues = " + $dbValues);
@@ -347,7 +328,7 @@ function PP2Update($dataStr, keys, newData)
        //need some kind of chk for success!
    if(pp2rtnUpdate == "success")
    {    
-        alert("Success & LBtn is Pushed = " + lastProfileButtonPushed );
+        //alert("Success & LBtn is Pushed = " + lastProfileButtonPushed );
      
        //Update PP2LastDBdata with just the changes made to the database...
        alert("--- " + PP2LastDBdata);
@@ -355,7 +336,7 @@ function PP2Update($dataStr, keys, newData)
        for(i = 0; i < keys.length; i++)
        {         
          PP2LastDBdata[keys[i]]  = newData[i];
-         alert("in for loop for +++ " + i + "/" + PP2LastDBdata[keys[i]] + "/"  + newData[i])
+        // alert("in for loop for +++ " + i + "/" + PP2LastDBdata[keys[i]] + "/"  + newData[i])
          //alert("key column name = " + PP2UpdateColumns[keys[i] ]);
        }
        alert("+++ " + PP2LastDBdata);
