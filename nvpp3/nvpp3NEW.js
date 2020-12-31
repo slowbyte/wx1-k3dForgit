@@ -244,7 +244,7 @@ function PP3EntriesPresent()
 // BEGIN FUNCTION PP3ChkDataChanged() ========================================
 function PP3ChkDataChanged()
 {
-   // alert("chking PP3ChkDataChanged() ");
+    alert("chking PP3ChkDataChanged() ");
     var keys = [];
     var newData = [];
     var line = [];
@@ -256,19 +256,22 @@ function PP3ChkDataChanged()
     //alert("section grs = " + line[3]);
     line[3] =  PP3sumChkedBoxes('chk', 21);
     //alert("section chk = " + line[4]);
-   
+   alert("line[3] = " + line[3]);
      entryChanged = false;
      $dataTmp = "";
      var index = 0;
      for(var i = 0; i < line.length; i++)  
      {      
-       if(line[i] != PP3LastDBdata[i ].trim())
+       alert("i = " + i + ".....  " +  line[i] + "/" +   PP3LastDBdata[i] );
+       if(line[i] != PP3LastDBdata[i])
        {              
+         alert("data has change with i = " + i);
          $dataTmp = $dataTmp + PP3LastColumns[i]   + "'" + line[i] + "'" + ", ";
          keys[index] = i;
          newData[index] = line[i];
          index++;
-         entryChanged = true;         
+         entryChanged = true; 
+               
        }
      }
       var len = $dataTmp.length;
@@ -276,7 +279,8 @@ function PP3ChkDataChanged()
       //alert("$dataTmp Final = " + $dataTmp); 
      
      if(entryChanged == false)  
-     {  //No changes so no update needed!
+     { 
+        alert("No changes so no update needed!");
         //alert("Changed = false; lPBPushed = " + lastProfileButtonPushed);
         objNAVnvpp3form.style.display = "none";
         document.getElementById('PP3ErrorBox').style.display = "none";
@@ -291,6 +295,7 @@ function PP3ChkDataChanged()
     }
     else if(entryChanged == true)
     {      
+      alert("at least one entry change, onward to UPdate fcn");
       PP3Update($dataTmp, keys, newData);
      }
 }
