@@ -76,6 +76,9 @@ function nvClosePP1()
    //objNAVnvmcp.style.display = "none";
    objNAVnvmc.style.display = "none";
    currentPPpage = 0;
+   document.getElementById('PP1ErrorBox').style.display = "none";
+   document.getElementById('PP2ErrorBox').style.display = "none";
+   document.getElementById('PP3ErrorBox').style.display = "none";
  }
 
 function XnvClosePP1()
