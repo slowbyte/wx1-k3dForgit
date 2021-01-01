@@ -217,7 +217,7 @@ function PP3EntriesPresent()
       { validated = false; errorlist = errorlist + "When Available";}
      
       var sectionSums = [gametypeSum, gamestyleSum, gamesizeSum, availableSum];
-      alert("validated as " + validated + "/" + sectionSums[0] + "/" + sectionSums[1] + "/" + sectionSums[2] + "/" + sectionSums[3] );
+      //alert("validated as " + validated + "/" + sectionSums[0] + "/" + sectionSums[1] + "/" + sectionSums[2] + "/" + sectionSums[3] );
 
       if(validated == true)
       {
@@ -226,7 +226,8 @@ function PP3EntriesPresent()
         PP3ChkDataChanged();
       }
       else if(validated == false)
-      {
+      {      
+        var data = [];
         //alert("need to popup  errorbox with errorlist info...");
         document.getElementById('PP3ErrorBox').style.display = "none";       
         data[0] = "ERROR: all sections (4) need at least 1 checkbox checked!";
