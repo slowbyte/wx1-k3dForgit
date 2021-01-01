@@ -44,19 +44,11 @@ class Reg extends DbnReg
    } 
    //====================================================== 
    public function RegGetEMAILrow($values)
-   {
-    // $thisEmail = "'" .$values[3] ."'" ;
-     //$sql = "Select * From $values[6] WHERE email = 'abc' ";                          //'$values[3]' ";   
-     // $sql = "Select * From tblProfilePg1 WHERE email =  'slowbyte'  ";
-    // $thisemail = '"' .$values[3] .'"' ;
-     //$thisemail = "'" ."abc" ."'";
-     // return $thisemail;
+   { 
      $sql = " select * from $values[6] where email =   '$values[3]'  " ;    
       $stmt = $this->connect($values)->query($sql) ;
       $row = $stmt->fetch();     
-      return $row;
-
-           
+      return $row;           
    }
    //====================================================== 
    public function RegWriteNewUser($values)  

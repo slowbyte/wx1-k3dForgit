@@ -240,13 +240,12 @@ dbAddData1 = dbAddData1 + ")";
 
   dbColumns2 = RegColumns2;
   dbValuesToInsert2 =  "(" + "'" + usernameOrig.toLowerCase() + "'"  + " , '0',  '0',  '0', '0' )";
-  alert(dbValuesToInsert2);
   var dBtable2 = "tblProfilePg2";
   
   var $newData= [];
   $newData = [dbAddress, dbUser, dbPwd, loggedUser, dbName, funcName, usernameOrig, dbColumns1, dbValuesToInsert1, dBtable1,
                         dbColumns2, dbValuesToInsert2, dBtable2];
-  alert("newData = " + $newData);
+  //alert("newData = " + $newData);
 
  setTimeout(function()
  {
