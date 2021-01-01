@@ -245,7 +245,7 @@ function PP3EntriesPresent()
 // BEGIN FUNCTION PP3ChkDataChanged() ========================================
 function PP3ChkDataChanged()
 {
-    alert("chking PP3ChkDataChanged() ");
+    //alert("chking PP3ChkDataChanged() ");
     var keys = [];
     var newData = [];
     var line = [];
@@ -257,16 +257,14 @@ function PP3ChkDataChanged()
     //alert("section grs = " + line[3]);
     line[3] =  PP3sumChkedBoxes('chk', 21);
     //alert("section chk = " + line[4]);
-   alert("line[3] = " + line[3]);
+   //alert("line[3] = " + line[3]);
      entryChanged = false;
      $dataTmp = "";
      var index = 0;
      for(var i = 0; i < line.length; i++)  
-     {      
-       alert("i = " + i + ".....  " +  line[i] + "/" +   PP3LastDBdata[i] );
+     {         
        if(line[i] != PP3LastDBdata[i])
        {              
-         alert("data has change with i = " + i);
          $dataTmp = $dataTmp + PP3LastColumns[i]   + "'" + line[i] + "'" + ", ";
          keys[index] = i;
          newData[index] = line[i];
@@ -281,13 +279,13 @@ function PP3ChkDataChanged()
      
      if(entryChanged == false)  
      { 
-        alert("No changes so no update needed!");
+        //alert("No changes so no update needed!");
         //alert("Changed = false; lPBPushed = " + lastProfileButtonPushed);
         objNAVnvpp3form.style.display = "none";
         document.getElementById('PP3ErrorBox').style.display = "none";
        if( lastProfileButtonPushed == "Update")
        {
-          alert("finished with last profile page PP3");
+          //alert("finished with last profile page PP3");
        } 
        else if(lastProfileButtonPushed == "Previous")  
       {
@@ -296,7 +294,7 @@ function PP3ChkDataChanged()
     }
     else if(entryChanged == true)
     {      
-      alert("at least one entry change, onward to UPdate fcn");
+      //alert("at least one entry change, onward to UPdate fcn");
       PP3Update($dataTmp, keys, newData);
      }
 }
@@ -305,7 +303,7 @@ function PP3ChkDataChanged()
 // BEGIN  PP3Update =============================================================================
 function PP3Update($dataStr, keys, newData)
 {
-  alert("in the PP3Update func \n\r" + $dataStr + "\n\r" + keys + "\n\r" + newData);
+  //alert("in the PP3Update func \n\r" + $dataStr + "\n\r" + keys + "\n\r" + newData);
   if( !(lastProfileButtonPushed == "Update" || lastProfileButtonPushed == "Previous"))
   {
     //alert("In PP2Update w/o Next or Previous clked");
@@ -322,10 +320,10 @@ function PP3Update($dataStr, keys, newData)
       var funcName =  "pp3UPDATEwrite";   
       var dBtable = "tblProfilePg2"; 
       var dbValuesToInsert  =  $dataStr;           
-      alert("dbValuesToInsert:   "  + dbValuesToInsert);
+      //alert("dbValuesToInsert:   "  + dbValuesToInsert);
      
      $dbValues = [dbHost, dbUser, dbPwd, loggedUser, dbName, funcName, username.toLowerCase(), dbValuesToInsert , dbValuesToInsert, dBtable]; 
-     alert("dbValues = " + $dbValues);
+     //alert("dbValues = " + $dbValues);
 
      setTimeout(function()
     {     
@@ -336,15 +334,14 @@ function PP3Update($dataStr, keys, newData)
        //need some kind of chk for success!
    if(pp3rtnUpdate == "success")
    {    
-        alert("Success & LBtn Pushed = " + lastProfileButtonPushed );
+        //alert("Success & LBtn Pushed = " + lastProfileButtonPushed );
     
        //Update PP3LastDBdata with just the changes made to the database...
        alert("==== " + PP3LastDBdata);
       // for(i = 1; i < keys.length; i++)
        for(i = 0; i < keys.length; i++)
        {
-         PP3LastDBdata[keys[i]]  = newData[i];
-         alert("key column name = " + PP3UpdateColumns[keys[i] ]);
+         PP3LastDBdata[keys[i]]  = newData[i];         
        }
        alert("+++ " + PP3LastDBdata);
          
@@ -558,7 +555,7 @@ function PP3chkBoxChanged()
       //alert("check box " + j + "not chked");
     }
   }
-  alert(totalValue);
+  //alert(totalValue);
   document.getElementById('sumTemp').innerHTML =  totalValue; 
 }
 // END FUNCTION PP3chkBoxChanged() ========================================
@@ -725,7 +722,7 @@ function PP3ajax($dbValues)
  
   if(funcCalled == "NONE")
   {
-    alert("PP3ajax()  CALLED = NONE\r\nCancelling" );
+    alert("PP3ajax()  FCN CALLED = NONE\r\nCancelling" );
     return;
   }
    //alert("Ajax FUNCTION CALLED = " + funcCalled);
