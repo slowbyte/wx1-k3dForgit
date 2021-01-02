@@ -94,7 +94,7 @@ class PP1 extends Dbn
    {    
      try
      {   
-     $sql = "UPDATE `$values[9]` SET " .$values[8]  ." WHERE usernameorig = " ."'" .$values[3] ."'" ;   //WORKING & FINISHED SQL     
+     $sql = "UPDATE `$values[8]` SET " .$values[7]  ." WHERE usernameorig = " ."'" .$values[3] ."'" ;   //WORKING & FINISHED SQL     
       $stmt = $this->connect($values)->exec($sql);   
       return "success";
     
@@ -116,7 +116,7 @@ class PP2 extends Dbn
     {    
       try
       {   
-      $sql = "UPDATE `$values[9]` SET " .$values[8]  ." WHERE username = " ."'" .$values[6] ."'" ;   //WORKING & FINISHED SQL     
+      $sql = "UPDATE `$values[8]` SET " .$values[7]  ." WHERE usernameorig = " ."'" .$values[3] ."'" ;    //WORKING & FINISHED SQL     
        $stmt = $this->connect($values)->exec($sql);   
        return "success";
       }
@@ -154,7 +154,7 @@ class PP3 extends Dbn
    {    
      try
      {   
-     $sql = "UPDATE `$values[9]` SET " .$values[8]  ." WHERE usernamelc = " ."'" .$values[6] ."'" ;   //WORKING & FINISHED SQL     
+     $sql = "UPDATE `$values[8]` SET " .$values[7]  ." WHERE usernamelc = " ."'" .$values[6] ."'" ;   //WORKING & FINISHED SQL     
       $stmt = $this->connect($values)->exec($sql);   
       return "success";
      }
