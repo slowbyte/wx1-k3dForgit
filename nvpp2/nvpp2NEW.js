@@ -315,7 +315,7 @@ function PP2Update($dataStr, keys, newData)
       var dbValuesToInsert  =  $dataStr; 
       //alert("dbValuesToInsert:   "  + dbValuesToInsert);
      
-     $dbValues = [dbHost, dbUser, dbPwd, loggedUser, dbName, funcName, username.toLowerCase(), dbValuesToInsert , dbValuesToInsert, dBtable]; 
+     $dbValues = [dbHost, dbUser, dbPwd, loggedUser, dbName, funcName, username.toLowerCase(), dbValuesToInsert, dBtable]; 
     // alert("dbValues = " + $dbValues);
 
      setTimeout(function()

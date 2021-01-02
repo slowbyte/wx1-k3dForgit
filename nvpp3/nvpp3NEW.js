@@ -301,7 +301,7 @@ function PP3ChkDataChanged()
 // END FUNCTION PP3ChkDataChanged() ==========================================
 
 // BEGIN  PP3Update =============================================================================
-function PP3Update($dataStr, keys, newData)
+function PP3Update($dataStr, keys, newData) 
 {
   //alert("in the PP3Update func \n\r" + $dataStr + "\n\r" + keys + "\n\r" + newData);
   if( !(lastProfileButtonPushed == "Update" || lastProfileButtonPushed == "Previous"))
@@ -322,13 +322,13 @@ function PP3Update($dataStr, keys, newData)
       var dbValuesToInsert  =  $dataStr;           
       //alert("dbValuesToInsert:   "  + dbValuesToInsert);
      
-     $dbValues = [dbHost, dbUser, dbPwd, loggedUser, dbName, funcName, username.toLowerCase(), dbValuesToInsert , dbValuesToInsert, dBtable]; 
+     $dbValues = [dbHost, dbUser, dbPwd, loggedUser, dbName, funcName, loggedUser.toLowerCase(), dbValuesToInsert, dBtable]; 
      //alert("dbValues = " + $dbValues);
 
      setTimeout(function()
     {     
        pp3rtnUpdate = PP3ajax($dbValues);
-      // alert(pp3rtnUpdate)
+       //alert(pp3rtnUpdate)
 
       // ( if ) SUCCESS CODE BEGINS ========================================================================
        //need some kind of chk for success!

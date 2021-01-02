@@ -332,14 +332,14 @@ function PP1ChkDataChanged()
       //var dbHost = "74.207.235.136";
       var dbUser = "root";
       var dbPwd = "slowbyte1";
-      var loggedUser =  PP123LastDBdata[9];  ///////////////////////username;
+      var loggedUser =  PP123LastDBdata[9];  ///////////////////////usernameorig;
       var dbName = "cf1";
       var funcName =  "pp1UPDATEwrite"; 
       var dBtable = "tblProfilePg1"; 
       var dbValuesToInsert  =  $dataStr;           
      // alert("dbValuesToInsert:   "  + dbValuesToInsert);
      
-     $dbValues = [dbHost, dbUser, dbPwd, loggedUser, dbName, funcName, username.toLowerCase(), dbValuesToInsert , dbValuesToInsert, dBtable]; 
+     $dbValues = [dbHost, dbUser, dbPwd, loggedUser, dbName, funcName, username.toLowerCase(), dbValuesToInsert, dBtable]; 
      //alert("dbValues = " + $dbValues);
 
      setTimeout(function()
